@@ -20,3 +20,44 @@
 
 //          ----           ----           -----           ----            ----            ----            ----
 
+// --- 03 February 2023 
+//Implement a function which convert the given boolean value into its string representation.
+//Note: Only valid inputs will be given.
+
+// My Solution : 
+// function booleanToString(b){
+//   let result
+//   b ? result ="true" : result = "false"
+//   return result
+// }
+
+// Best Practice : 
+// function booleanToString(b){
+//   return b.toString();
+// }
+// OR
+// function booleanToString(b){
+//   return b ? 'true' : 'false';
+// }
+
+//          ----           ----           -----           ----            ----            ----            ----
+
+// --- 03 Feb 2023 ---
+// --- Instruction : 
+// Timmy & Sarah think they are in love, but around where they live, they will only know once they pick a flower each. 
+// If one of the flowers has an even number of petals and the other has an odd number of petals it means they are in love.
+// Write a function that will take the number of petals of each flower and return true if they are in love and false if they aren't.
+
+// --- My Solution : 
+// function lovefunc(flower1, flower2){
+//   return flower1%2 === flower2%2 ? false : true
+// }
+
+// --- Best Practice : 
+// function lovefunc(flower1, flower2){
+//   return flower1 % 2 !== flower2 % 2;
+// }
+
+//          ----           ----           -----           ----            ----            ----            ---- 
+
+

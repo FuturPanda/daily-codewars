@@ -1,6 +1,6 @@
 # Daily Practice 2023 - 
 
-Daily practice initiated Freb, the 2th of 2023. 
+Daily practice initiated Freb, the 1st of 2023. 
 
 ## -- CODEWARS --
 
