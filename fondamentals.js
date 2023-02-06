@@ -82,4 +82,24 @@
 
 //          ----           ----           -----           ----            ----            ----            ---- 
 
+// --- 05 Feb 2023 ---
+// --- Instruction : 
+// Complete the solution so that it reverses the string passed into it.
+
+// --- My Solution : 
+// function solution(str){
+//   return str.split('').reverse().toString().replaceAll(',', '')
+// }
+
+// --- Best Practice : 
+// function solution(str){
+//   return str.split('').reverse().join('');  
+// }
+
+// --- Interessant : 
+// const solution = s => [...s].reverse().join('')
+
+
+//          ----           ----           -----           ----            ----            ----            ---- 
+
 
