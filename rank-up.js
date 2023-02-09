@@ -180,28 +180,98 @@
 //  instead of returning an object 
 //          ----           ----           -----           ----            ----            ----            ---- 
 
+// --- 08 Feb 2023 ---
+// --- Instruction :
+// Task
+// Given a list and a number, create a new list that contains each number of list at most N times, without reordering.
+// For example if the input number is 2, and the input list is [1,2,3,1,2,1,2,3], you take [1,2,3,1,2], drop the next [1,2] since this would lead to 1 and 2 being in the result 3 times, and then take 3, which leads to [1,2,3,1,2,3].
+// With list [20,37,20,21] and number 1, the result would be [20,37,21].
 
-function deleteNth(arr,n){
-    let obj = {}
-    let indexToRemove = []
-    for (let i=0 ; i<arr.length; i++ ){
-      if(!obj[arr[i]]) {
-        obj[arr[i]] = 1
-        console.log(`${i} : create 1 ${obj}`)
-      }
-      else if(obj[arr[i]] === n){
-        indexToRemove.push(i)
-      }
-      else {
-        obj[arr[i]] = ++obj[arr[i]]
-        console.log(`${i} : added 1 ! ${obj}`)
-        }
-    } 
-    for (let i=0 ; i<indexToRemove.length;i++) {
-        arr.splice(indexToRemove[i]-i, 1)
+// --- My Solution : 
+// function deleteNth(arr,n){
+//     let obj = {}
+//     let indexToRemove = []
+//     for (let i=0 ; i<arr.length; i++ ){
+//       if(!obj[arr[i]]) {
+//         obj[arr[i]] = 1
+//         console.log(`${i} : create 1 ${obj}`)
+//       }
+//       else if(obj[arr[i]] === n){
+//         indexToRemove.push(i)
+//       }
+//       else {
+//         obj[arr[i]] = ++obj[arr[i]]
+//         console.log(`${i} : added 1 ! ${obj}`)
+//         }
+//     } 
+//     for (let i=0 ; i<indexToRemove.length;i++) {
+//         arr.splice(indexToRemove[i]-i, 1)
+//     }
+//     console.log(indexToRemove)
+//     console.log(arr)
+//     return arr
+//   }
+
+
+// --- Best Practice : 
+// function deleteNth(arr,x) {
+//   var cache = {};
+//   return arr.filter(function(n) {
+//     cache[n] = (cache[n]||0) + 1;
+//     return cache[n] <= x;
+//   });
+// }
+
+//          ----           ----           -----           ----            ----            ----            ---- 
+// --- 9 Feb 2023 ---
+// --- Instruction : 
+
+// --- My Solution : 
+
+function scramble(str1, str2) {
+  
+    const oneWord = str1.split('').sort()
+    const twoWord = str2.split('').sort()
+
+    const result = oneWord.filter(letter => {
+        twoWord.includes(letter)).join('')
     }
-    console.log(indexToRemove)
-    console.log(arr)
-    return arr
-  }
-deleteNth([1,2,3,1,1,2,1,2,3,3,2,4,5,3,1], 3)  
+    const result2 = twoWord.join('')
+
+    console.log(oneWord, twoWord, result, result2)
+    if (result === result2) console.log(true)
+    else console.log(false)
+}
+ 
+scramble('rkqodlw','world')
+scramble('scriptingjava',     'javascript' )
+// Works but too slow ?
+
+// function scramble(str1, str2) {
+//     const oneWord = str1.split('')
+//     const twoWord = str2.split('')
+//     const trueFalse = []
+//     for (i=0;i<twoWord.length;i++) {
+//       if ( oneWord.includes(twoWord[i])){
+//         oneWord.splice(oneWord.indexof(twoWord[i]), 1)
+//       }
+//       else {return false}
+//     }
+//     return true;
+//   }
+
+
+
+// 
+
+// --- Best Practice : 
+// 
+
+
+
+
+// --- Interesting : 
+// https://adrianmejia.com/most-popular-algorithms-time-complexity-every-programmer-should-know-free-online-tutorial-course/#:~:text=n%20indicates%20the%20input%20size,of%20the%20input%20size%20n%20.
+// Time Complexity is a thing ! 
+// Big O notation en algorythmie.
+//          ----           ----           -----           ----            ----            ----            ---- 
