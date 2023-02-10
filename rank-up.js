@@ -228,23 +228,23 @@
 
 // --- My Solution : 
 
-function scramble(str1, str2) {
+// function scramble(str1, str2) {
   
-    const oneWord = str1.split('').sort()
-    const twoWord = str2.split('').sort()
+//     const oneWord = str1.split('').sort()
+//     const twoWord = str2.split('').sort()
 
-    const result = oneWord.filter(letter => {
-        twoWord.includes(letter)).join('')
-    }
-    const result2 = twoWord.join('')
+//     const result = oneWord.filter(letter => {
+//         twoWord.includes(letter)).join('')
+//     }
+//     const result2 = twoWord.join('')
 
-    console.log(oneWord, twoWord, result, result2)
-    if (result === result2) console.log(true)
-    else console.log(false)
-}
+//     console.log(oneWord, twoWord, result, result2)
+//     if (result === result2) console.log(true)
+//     else console.log(false)
+// }
  
-scramble('rkqodlw','world')
-scramble('scriptingjava',     'javascript' )
+// scramble('rkqodlw','world')
+// scramble('scriptingjava',     'javascript' )
 // Works but too slow ?
 
 // function scramble(str1, str2) {
@@ -274,4 +274,74 @@ scramble('scriptingjava',     'javascript' )
 // https://adrianmejia.com/most-popular-algorithms-time-complexity-every-programmer-should-know-free-online-tutorial-course/#:~:text=n%20indicates%20the%20input%20size,of%20the%20input%20size%20n%20.
 // Time Complexity is a thing ! 
 // Big O notation en algorythmie.
+//          ----           ----           -----           ----            ----            ----            ---- 
+
+
+// --- 10 Feb 23 ---
+// --- Instruction : 
+
+// Complete the solution so that it strips all text that follows any of a set of comment markers passed in. Any whitespace at the end of the line should also be stripped out.
+
+// Example:
+
+// Given an input string of:
+
+// apples, pears # and bananas
+// grapes
+// bananas !apples
+// The output expected would be:
+
+// apples, pears
+// grapes
+// bananas
+// The code would be called like so:
+
+// var result = solution("apples, pears # and bananas\ngrapes\nbananas !apples", ["#", "!"])
+
+// --- My Solution : 
+// function solution(input, markers) {
+//     const array = [...input]
+//     let afterMarker = false
+//     let markerIndex 
+    
+//     for (marker of markers) {
+//         const numb = array.filter((v) => (v === marker)).length;
+//         for ( let i = 0; i < numb; i++){
+//             for (let i=0; i<array.length ; i++) {
+//                 const item=array[i]
+//                 if(i === (array.length-1) && afterMarker === true) {
+//                     array.splice(markerIndex)
+//                 }
+//                 else if (item === marker){
+//                     afterMarker = true
+//                     markerIndex = i
+//                 }
+//                 else if ( array[i] == "\n" && afterMarker === true) {
+//                     array.splice(markerIndex, i-markerIndex)
+//                     afterMarker = false
+//                 }
+//                 else if (item === "\n" && afterMarker === false && array[i-1] === " "){
+//                     array.splice(i-1, 1)
+//                 }
+//             }
+            
+//         }    
+//         if (array[array.length-1] === " ") array.splice(array.length-1)
+//     } 
+//     const restring= array.join('')
+//     return restring
+// }
+
+// --- Best Practice : 
+// function solution(input, markers) {
+    
+
+//   console.log(input.split('\n').map(
+//     line => markers.reduce(
+//       (line, marker) => line.split(marker)[0].trim(), line
+//     )
+//   ).join('\n'))
+//     }
+// solution("apples, pears # and bananas\ngrapes\nbananas !apples", ["#", "!"])
+
 //          ----           ----           -----           ----            ----            ----            ---- 
