@@ -345,3 +345,37 @@
 // solution("apples, pears # and bananas\ngrapes\nbananas !apples", ["#", "!"])
 
 //          ----           ----           -----           ----            ----            ----            ---- 
+
+// --- 11 Feb 2023 ---
+// --- Instruction : 
+// Write an algorithm that takes an array and moves all of the zeros to 
+// the end, preserving the order of the other elements.
+
+// moveZeros([false,1,0,1,2,0,1,3,"a"]) // returns[false,1,1,2,1,3,"a"]
+
+// --- My Solution : 
+// function moveZeros(arr) {
+//   const arrNoZero = arr.filter((item) => item !== 0)
+//   const howManyZero = arr.length - arrNoZero.length
+//   for (i=0; i<howManyZero; i++){
+//     arrNoZero.push(0)
+//   }
+//   return arrNoZero
+  
+// }
+
+// --- Best Practice : 
+// var moveZeros = function (arr) {
+//   return arr.filter(function(x) {return x !== 0}).concat(arr.filter(function(x) {return x === 0;}));
+// }
+
+// --- Best Practice 2 : 
+// var moveZeros = function (arr) {
+//     return [
+//       ...(arr.filter(n => n !== 0)),
+//       ...(arr.filter(n => n === 0))
+//     ];
+//   }
+
+// --- Observation : éviter les for loops au maximum. 
+//          ----           ----           -----           ----            ----            ----            ---- 
