@@ -435,3 +435,16 @@
 
 // --- Observation : A refaire !! 
 //          ----           ----           -----           ----            ----            ----            ---- 
+
+
+function generateHashtag (str) {
+    if (str == ""){ return false}
+    console.log(str)
+    console.log(str.split(" "))
+    const result = str.split(" ").map(item => item == "" ? "" : item[0].toString().toUpperCase() + item.slice(1).toLowerCase()).join("")
+    
+    // const result = "#" + str.split(" ").map(item => item[0] == " " ? item[1].toUpperCase()+item.slice(2) : item[0].toUpperCase()+item.slice(1)).reduce((a,b) => a+b)
+    return result.length > 140 || result == " " ? false : "#" + result
+  }
+
+  console.log(generateHashtag("code" + " ".repeat(140) + "wars"))
