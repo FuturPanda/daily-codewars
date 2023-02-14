@@ -437,14 +437,136 @@
 //          ----           ----           -----           ----            ----            ----            ---- 
 
 
-function generateHashtag (str) {
-    if (str == ""){ return false}
-    console.log(str)
-    console.log(str.split(" "))
-    const result = str.split(" ").map(item => item == "" ? "" : item[0].toString().toUpperCase() + item.slice(1).toLowerCase()).join("")
-    
-    // const result = "#" + str.split(" ").map(item => item[0] == " " ? item[1].toUpperCase()+item.slice(2) : item[0].toUpperCase()+item.slice(1)).reduce((a,b) => a+b)
-    return result.length > 140 || result == " " ? false : "#" + result
-  }
+// --- 13 Feb 23 ---
+// --- Instruction : 
+// The marketing team is spending way too much time typing in hashtags.
+// Let's help them with our own Hashtag Generator!
 
-  console.log(generateHashtag("code" + " ".repeat(140) + "wars"))
+// Here's the deal:
+
+// It must start with a hashtag (#).
+// All words must have their first letter capitalized.
+// If the final result is longer than 140 chars it must return false.
+// If the input or the result is an empty string it must return false.
+// Examples
+// " Hello there thanks for trying my Kata"  =>  "#HelloThereThanksForTryingMyKata"
+// "    Hello     World   "                  =>  "#HelloWorld"
+// ""                                        =>  false
+
+
+// --- My Solution : 
+// function generateHashtag (str) {
+//     if (str == "") return false 
+//     const result = str.split(" ").map(item => item == "" ? "" : item[0].toString().toUpperCase() + item.slice(1).toLowerCase()).join("")
+//     return result.length > 139 || result == "" ? false : "#" + result
+//   }
+
+// --- Best Practice : 
+// function generateHashtag (str) {
+//     if(!str || str.length < 1) return false;
+   
+//     var r = '#' + str.split(' ').map(function(el) {
+//       return el.charAt(0).toUpperCase() + el.slice(1).toLowerCase();
+//     }).join('');
+//     return r.length > 140?false:r;
+//  }
+
+//          ----           ----           -----           ----            ----            ----            ---- 
+
+
+// --- 14 Feb 23 ---
+// --- Instruction : 
+// In this kata, you will write a function that returns the positions and the values of the "peaks" (or local maxima) of a numeric array.
+
+// For example, the array arr = [0, 1, 2, 5, 1, 0] has a peak at position 3 with a value of 5 (since arr[3] equals 5).
+
+// The output will be returned as an object with two properties: pos and peaks. Both of these properties should be arrays. If there is no peak in the given array, then the output should be {pos: [], peaks: []}.
+
+// Example: pickPeaks([3, 2, 3, 6, 4, 1, 2, 3, 2, 1, 2, 3]) should return {pos: [3, 7], peaks: [6, 3]} (or equivalent in other languages)
+
+// All input arrays will be valid integer arrays (although it could still be empty), so you won't need to validate the input.
+
+// The first and last elements of the array will not be considered as peaks (in the context of a mathematical function, we don't know what is after and before and therefore, we don't know if it is a peak or not).
+
+// Also, beware of plateaus !!! [1, 2, 2, 2, 1] has a peak while [1, 2, 2, 2, 3] and [1, 2, 2, 2, 2] do not. In case of a plateau-peak, please only return the position and value of the beginning of the plateau. For example: pickPeaks([1, 2, 2, 2, 1]) returns {pos: [1], peaks: [2]} (or equivalent in other languages)
+
+// Have fun!
+
+// --- My Solution : 
+// function pickPeaks(arr){
+//   let pos = []
+//   let peaks = []
+//   for (let i=0, plateau=false, posPlateau;i<arr.length;i++) {
+//     if (arr[i] > arr[i-1] && plateau == true) {
+//       plateau = false
+//       if(arr[i] > arr[i+1]) {
+//             pos.push(i)
+//             peaks.push(arr[i])
+//         }
+//       else if (arr[i] == arr[i+1] && arr[i] > arr[i-1]){
+//            plateau=true
+//             posPlateau = i
+//         }
+//     }
+//     else if (arr[i] > arr[i+1] && arr[i] > arr[i-1] ){
+//       pos.push(i)
+//       peaks.push(arr[i])
+//     }
+//     else if (arr[i] == arr[i+1] && arr[i] > arr[i-1]){
+//       plateau=true
+//       posPlateau = i
+//     }
+//     else if (arr[i] < arr[i-1] && plateau == true){
+//       pos.push(posPlateau)
+//       peaks.push(arr[posPlateau])
+//       plateau = false
+//     }
+    
+//   }
+//   return {pos, peaks}
+// }
+
+// --- Best Practice : 
+//---- #1 
+// function pickPeaks(arr){
+//   var result = {pos: [], peaks: []};
+//   if(arr.length > 2) {
+//     var pos = -1;
+//     for(var i=1; i<arr.length;i++){
+//       if(arr[i] > arr[i-1]) {
+//         pos = i;
+//       } else if(arr[i] < arr[i-1] && pos != -1) {
+//         result.pos.push(pos);
+//         result.peaks.push(arr[pos]);
+//         pos = -1;
+//       }
+//     }
+//   }
+//   return result;
+// }
+// --- #2
+// function pickPeaks(arr){
+//     var result = {pos: [], peaks: []};
+//     var pos;
+//     var peak;
+//     if(arr.length === 0) {return result;}
+    
+//     arr.reduce((prev, curr, index) => {
+//       if(curr > prev) {
+//         pos = index;
+//         peak = curr;
+//       } else if(curr < prev && pos >= 0) {
+//         result.pos.push(pos);
+//         result.peaks.push(peak);
+//         pos = -1;
+//       }
+      
+//       return curr;
+//     });
+    
+//     return result;
+//     //  return {pos:[],peaks:[]}
+//   }
+
+
+//          ----           ----           -----           ----            ----            ----            ---- 
