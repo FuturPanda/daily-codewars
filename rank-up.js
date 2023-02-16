@@ -610,3 +610,77 @@
 // 
 
 //          ----           ----           -----           ----            ----            ----            ---- 
+
+// --- 16 Feb 23 ---
+// --- Instruction : 
+// Consider a sequence u where u is defined as follows:
+
+// The number u(0) = 1 is the first one in u.
+// For each x in u, then y = 2 * x + 1 and z = 3 * x + 1 must be in u too.
+// There are no other numbers in u.
+// Ex: u = [1, 3, 4, 7, 9, 10, 13, 15, 19, 21, 22, 27, ...]
+
+// 1 gives 3 and 4, then 3 gives 7 and 10, 4 gives 9 and 13, then 7 gives 15 and 22 and so on...
+
+// Task:
+// Given parameter n the function dbl_linear (or dblLinear...) returns the element u(n) of the ordered (with <) sequence u (so, there are no duplicates).
+
+// Example:
+// dbl_linear(10) should return 22
+
+// Note:
+// Focus attention on efficiency
+// --- My Solution : 
+// function dblLinear(n) {
+//     let x, y, z
+//     let uArr = [0]
+//     for (let i=0; i<=n*10; i++) {
+//         x = uArr[i]
+//         y = uArr[i]*2+1
+//         z = uArr[i]*3+1
+//         uArr.push(y)
+//         uArr.push(z)
+//     }
+//     const result = [... new Set(uArr)].sort((a,b) => a-b)
+//     console.log(uArr)
+//     console.log(uArr[n+1])
+  
+//     return result[n+1]
+    
+//   }
+
+  // --- Observation : 
+  // For the big O notation : garder un if() dans le for loop c'esttrop gourmand
+  // filter ou sort aussi. Du coup tout passer après la loop, mais ça demande d'avoir un set plus grand 
+  // de x pour être raccord lors de la selection de u(n). Ici pas scalable car n+10 juste suffisant pour passer
+  // les test a grands nombres. Peut-être essayer avec n+(n/4) ou un truc du genre. 
+
+// --- Best Practice : 
+// function dblLinear(n) {
+//   var ai = 0, bi = 0, eq = 0;
+//   var sequence = [1];
+//   while (ai + bi < n + eq) {
+//     var y = 2 * sequence[ai] + 1;
+//     var z = 3 * sequence[bi] + 1;
+//     if (y < z) { sequence.push(y); ai++; }
+//     else if (y > z) { sequence.push(z); bi++; }
+//     else { sequence.push(y); ai++; bi++; eq++; }
+//   }
+//   return sequence.pop();
+// }
+
+//function dblLinear(n) {
+  
+// var u = [1], pt2 = 0, pt3 = 0; //two pointer
+    
+// for(var i = 1;i<=n;i++){
+//   u[i] = Math.min(2* u[pt2] + 1, 3*u[pt3] + 1);
+//   if(u[i] == 2 * u[pt2] + 1) pt2++;
+//   if(u[i] == 3 * u[pt3] + 1) pt3++;
+// }
+
+// return u[n];
+
+// }
+//          ----           ----           -----           ----            ----            ----            ---- 
+
