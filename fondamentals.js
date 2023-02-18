@@ -127,3 +127,72 @@
 // }
 
 //          ----           ----           -----           ----            ----            ----            ---- 
+
+// --- 18 Feb 23 ---
+// --- Instruction : 
+// Your task is to make a function that can take any non-negative integer as an argument and return it with its digits in descending order. Essentially, rearrange the digits to create the highest possible number.
+
+// Examples:
+// Input: 42145 Output: 54421
+
+// Input: 145263 Output: 654321
+
+// Input: 123456789 Output: 987654321
+
+// --- My Solution : 
+// 
+// function descendingOrder(n){
+//   return n<10 ? n : Number(String(n).split('').map(Number).sort((a,b) => b-a).join(""))
+// }
+// --- Best Practice : 
+// function descendingOrder(n){
+//   return parseInt(String(n).split('').sort().reverse().join(''))
+// }
+
+//          ----           ----           -----           ----            ----            ----            ---- 
+// --- 18 Feb 23 ---
+// --- Instruction : 
+// The rgb function is incomplete. Complete it so that passing in RGB decimal values will result in a hexadecimal representation being returned. Valid decimal values for RGB are 0 - 255. Any values that fall out of that range must be rounded to the closest valid value.
+
+// Note: Your answer should always be 6 characters long, the shorthand with 3 will not work here.
+
+// The following are examples of expected output values:
+
+// rgb(255, 255, 255) // returns FFFFFF
+// rgb(255, 255, 300) // returns FFFFFF
+// rgb(0,0,0) // returns 000000
+// rgb(148, 0, 211) // returns 9400D3
+// --- My Solution : 
+// 
+// function rgb(r, g, b){
+//   const letterArr = ["", "A", "B", "C", "D", "E", "F"]
+//   let arrRGB = [r, g, b]
+//   let arrHEX = []
+//   for (color of arrRGB) {
+//     let toPush = []
+//     let betterColor
+//     if (color > 255) betterColor = 255
+//     else if (color < 0) betterColor = 0
+//     let hexDigits = [Math.floor(betterColor / 16) ,((betterColor/16)-Math.floor(betterColor / 16))*16 ]
+//     for (digit of hexDigits){
+//       console.log("digit : ", digit)
+//       if (digit <10) toPush.push(digit)
+//       else {
+//         const wow = String(digit).split('').map(Number).reduce((a,b) => a+b)
+//         wow > 6 ? toPush.push("F") : toPush.push(letterArr[wow])
+//         // const wow = letterArr[Number(String(digit).split('').reduce((a, b) => a+b))]
+//         console.log("wow : ", wow)
+//       }
+//       arrHEX.push(toPush)
+//       toPush = []
+//     }
+//     console.log(arrHEX)
+//   }
+// }
+// rgb(300,255,255)
+
+// --- Best Practice : 
+// 
+
+//          ----           ----           -----           ----            ----            ----            ---- 
+
