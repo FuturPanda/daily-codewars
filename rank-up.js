@@ -717,32 +717,33 @@
 //   //   Private methods
 //   // -------------------------
 //   let testMethod = function() {
+//     console.log(data)
+//     if(data.length<2 && data[0] == 1) return true
+//     if(data.length<2) return false
 //     for (let i=0; i<data.length;i++) {
 //         if (data.length !== data[i].length) return false
 //          const verifArray = new Set(data[i])
 //         if (verifArray.size !== data[i].length) return false
 //       } 
-//       let N = data.length
-//       let petitN = Math.sqrt(N)
-//       let carreArr = []
-//       for (let k=0; k<N ; k++)  {
-//         let toPush = []
-//         for (let i=0; i<petitN; i++) {
-//             for(let j=0 ; j<petitN; j++){
-//                 toPush.push(data[j].shift())
+//     let N = data.length
+//     let petitN = Math.sqrt(N)
+//     let toPush = []
+//     for (let o=0; o<petitN; o++){
+//         for (let m=0; m<petitN; m++){
+//             for (let i=0; i<petitN; i++) {
+//                 let array = data[i]
+//                 for (let k =0 ; k<petitN; k++){
+//                     toPush.push(array.shift())
+//                 }
 //             }
+//             const verifToPush = new Set(toPush)
+//             if(toPush.length !== verifToPush.size) return false
+//             toPush=[]
 //         }
-//         carreArr.push(toPush)
-//         data.shift()
-//       }
-//       for (let x=0; x<carreArr.length; x++){
-//         const verifCarre = new Set(carreArr[x])
-//         console.log(verifCarre, " and ", carreArr[x])
-//         if (verifCarre.size !== carreArr[x].length) return false
-//       }
-//       return true
+//         for(let n=0; n<petitN; n++){data.shift()}
+//     }
+//     return true
 //   }
-  
   
 
 //   //   Public methods
@@ -755,38 +756,34 @@
 //   };
 // };
 
-// var goodSudoku1 = new Sudoku([
-//     [7,8,4, 1,5,9, 3,2,6],
-//     [5,3,9, 6,7,2, 8,4,1],
-//     [6,1,2, 4,3,8, 7,5,9],
-  
-//     [9,2,8, 7,1,5, 4,6,3],
-//     [3,5,7, 8,4,6, 1,9,2],
-//     [4,6,1, 9,2,3, 5,8,7],
-    
-//     [8,7,6, 3,9,4, 2,1,5],
-//     [2,4,3, 5,6,1, 9,7,8],
-//     [1,9,5, 2,8,7, 6,3,4]
-//   ]);
-//   var badSudoku2 = new Sudoku([
-//     [1,2,3,4,5],
-//     [1,2,3,4],
-//     [1,2,3,4],  
-//     [1]
-//   ]);
-//   var badSudoku1 = new Sudoku([
-//     [1,2,3, 4,5,6, 7,8,9],
-//     [1,2,3, 4,5,6, 7,8,9],
-//     [1,2,3, 4,5,6, 7,8,9],
-    
-//     [1,2,3, 4,5,6, 7,8,9],
-//     [1,2,3, 4,5,6, 7,8,9],
-//     [1,2,3, 4,5,6, 7,8,9],
-    
-//     [1,2,3, 4,5,6, 7,8,9],
-//     [1,2,3, 4,5,6, 7,8,9],
-//     [1,2,3, 4,5,6, 7,8,9]
-//   ]);
-//   console.log(goodSudoku1.isValid())
-//   console.log(badSudoku1.isValid())
+
+// --- Best Practice : 
+// function Sudoku(board) {
+//   var sqrt = Math.sqrt(board.length);
+//   var esum = board.length * (board.length + 1) / 2;
+
+//   function checkDigits(selection) {
+//     return selection.reduce(function(sum, digit) {
+//       return typeof digit == 'number' ? sum + digit : NaN;
+//     }, 0) == esum;
+//   }
+
+//   return {
+//     isValid: function() {
+//       return board.every(function(row, i) {
+//         return checkDigits(row) &&
+//                checkDigits(board.map(function(row) {
+//                  return row[i];
+//                })) &&
+//                checkDigits(board.map(function(_, j) {
+//                  return board[(i/sqrt|0)*sqrt+(j/sqrt|0)][i%sqrt*sqrt+j%sqrt];
+//                }));
+//       });
+//     }
+//   };
+// }
+
+// --- Comment : 
+// Really ugly, but worked. This nested for loops are a nightmare. I Should have use the privates methods more. Need to review this one. 
+//          ----           ----           -----           ----            ----            ----            ---- 
 
