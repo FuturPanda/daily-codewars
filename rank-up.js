@@ -787,3 +787,90 @@
 // Really ugly, but worked. This nested for loops are a nightmare. I Should have use the privates methods more. Need to review this one. 
 //          ----           ----           -----           ----            ----            ----            ---- 
 
+
+// --- 20 Feb 23 ---
+// --- Instruction : 
+//Given the string representations of two integers, return the string representation of the sum of those integers.
+
+// For example:
+
+// sumStrings('1','2') // => '3'
+// A string representation of an integer will contain no characters besides the ten numerals "0" to "9".
+
+// I have removed the use of BigInteger and BigDecimal in java
+
+// Python: your solution need to work with huge numbers (about a milion digits), converting to int will not work.
+
+
+// --- My Solution : 
+// 
+// function sumStrings(a,b) { 
+//   const lengthAB = a.length < b.length ? b.length : a.length
+//   const aArr = a.split("").map(item => Number(item))
+//   const bArr = b.split("").map(item => Number(item))
+//   const arrToReverseFinal = []
+//   let leftToAdd = false
+//   let calcul = (sumToPush) => {
+//     console.log(leftToAdd)
+//     if (leftToAdd) {
+//       sumToPush = sumToPush + leftToAdd 
+//       leftToAdd = false
+//     }
+//   if (sumToPush == 0 && aArr.length == 0 && bArr.length == 0) return
+//   else if (sumToPush<10) arrToReverseFinal.push(sumToPush)
+//   else {
+//       console.log("pushing")
+//       arrToReverseFinal.push(sumToPush - 10)
+//       leftToAdd = 1
+//   }
+//   }
+
+//   for (i=1; i<=lengthAB+1; i++) {
+//     let sumToPush
+//     if (aArr.length == 0 && bArr.length == 0) {
+//       sumToPush = 0
+//     }
+//     else if (aArr.length == 0 || bArr.length == 0 ) {
+//     sumToPush = aArr.length == 0 ? bArr.pop() : aArr.pop() 
+//     }
+//     else sumToPush = aArr.pop()+bArr.pop() 
+    
+//     calcul(sumToPush)
+//   }
+//   return(arrToReverseFinal.reverse().join(""))
+// }
+
+// --- Best Practice : 
+//  function sumStrings(a,b) { 
+//   return (BigInt(a) + BigInt(b)).toString();
+// }
+
+// --- Best Practice 2 :
+// String.prototype.reverse = function() {
+//   return this.split('').reverse().join('');
+// }
+
+// function sumStrings(a,b) {
+//   a = a.reverse(); b = b.reverse();
+//   var carry = 0;
+//   var index = 0;
+//   var sumDigits = [];
+//   while (index < a.length || index < b.length || carry != 0) {
+//     var aDigit = index < a.length ? parseInt(a[index]) : 0;
+//     var bDigit = index < b.length ? parseInt(b[index]) : 0;
+//     var digitSum = aDigit + bDigit + carry;
+//     sumDigits.push((digitSum % 10).toString());
+//     carry = Math.floor(digitSum / 10);
+//     index++;
+//   }
+//   sumDigits.reverse();
+//   while (sumDigits[0] == '0') sumDigits.shift();
+//   return sumDigits.join('');
+// }
+
+// --- Comment : 
+// Pas Simple ! 
+
+//          ----           ----           -----           ----            ----            ----            ---- 
+
+
