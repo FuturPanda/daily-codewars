@@ -874,3 +874,6 @@
 //          ----           ----           -----           ----            ----            ----            ---- 
 
 
+const arr = ["2", "+", "?"]
+const newArr = arr[2].replace("?", "3")
+console.log(arr)
