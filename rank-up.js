@@ -1,21 +1,19 @@
 // 01 February 2023
 
-//Write a function, which takes a non-negative integer (seconds) as input and 
+//Write a function, which takes a non-negative integer (seconds) as input and
 //returns the time in a human-readable format (HH:MM:SS)
 // HH = hours, padded to 2 digits, range: 00 - 99
 // MM = minutes, padded to 2 digits, range: 00 - 59
 // SS = seconds, padded to 2 digits, range: 00 - 59
 // The maximum time never exceeds 359999 (99:59:59)
 
-
-
 // function humanReadable(seconds) {
 //     let secs = seconds%60
 //     let mins = seconds / 60
 //     let hours = mins / 60
-    // mins < 1 ? mins = 00 : (mins = Math.floor(mins)  )
-    // hours < 1 ? hours = 00 : hours = Math.floor(hours)
-    // seconds%60 === 0 ? secs = 00 : secs = seconds%60 * 60 / 100
+// mins < 1 ? mins = 00 : (mins = Math.floor(mins)  )
+// hours < 1 ? hours = 00 : hours = Math.floor(hours)
+// seconds%60 === 0 ? secs = 00 : secs = seconds%60 * 60 / 100
 // console.log(seconds)
 //     console.log(seconds%60)
 //     console.log (mins, hours)
@@ -24,17 +22,15 @@
 
 // }
 
-
 // --- 6 Feb 2023 ---
-// --- Instruction : 
-// Write a function that when given a URL as a string, parses out just the domain 
+// --- Instruction :
+// Write a function that when given a URL as a string, parses out just the domain
 // name and returns it as a string. For example:
 // * url = "http://github.com/carbonfive/raygun" -> domain name = "github"
 // * url = "http://www.zombie-bites.com"         -> domain name = "zombie-bites"
 // * url = "https://www.cnet.com"                -> domain name = cnet"
 
-
-// --- My Solution : 
+// --- My Solution :
 // function domainName(url){
 //   let truncHttp, truncW
 //   if (url.includes("http://")) {
@@ -53,7 +49,7 @@
 //   }
 // }
 
-// --- Best Practice : 
+// --- Best Practice :
 // function domainName(url){
 //   url = url.replace("https://", '');
 //   url = url.replace("http://", '');
@@ -61,11 +57,10 @@
 //   return url.split('.')[0];
 // };
 
-//          ----           ----           -----           ----            ----            ----            ---- 
-
+//          ----           ----           -----           ----            ----            ----            ----
 
 // --- 07 Feb 2023 ---
-// --- Instruction : 
+// --- Instruction :
 // This time we want to write calculations using functions and get the results. Let's have a look at some examples:
 
 // seven(times(five())); // must return 35
@@ -81,12 +76,12 @@
 // Division should be integer division. For example, this should return 2, not 2.666666...:
 // eight(dividedBy(three()));
 
-// --- My Solution : 
+// --- My Solution :
 // const doTheMath = (obj) => {
 
 //     const {rightOperand, operand, leftOperand} = obj
 //     let result = 0
-   
+
 //     if(operand === "plus"){
 //         result = leftOperand + rightOperand
 //     }
@@ -158,8 +153,7 @@
 //     return obj
 // }
 
-
-// --- Best Practice : 
+// --- Best Practice :
 // function zero(fn) {return fn ? fn(0) : 0}
 // function one(fn) {return fn ? fn(1) : 1}
 // function two(fn) {return fn ? fn(2) : 2}
@@ -175,10 +169,10 @@
 // function times(n) {return function(v) {return v * n}}
 // function dividedBy(n) {return function(v) {return v / n}}
 
-// --- Observation : 
+// --- Observation :
 // Returning a fonction was my blind spot. Should have thought about this
-//  instead of returning an object 
-//          ----           ----           -----           ----            ----            ----            ---- 
+//  instead of returning an object
+//          ----           ----           -----           ----            ----            ----            ----
 
 // --- 08 Feb 2023 ---
 // --- Instruction :
@@ -187,7 +181,7 @@
 // For example if the input number is 2, and the input list is [1,2,3,1,2,1,2,3], you take [1,2,3,1,2], drop the next [1,2] since this would lead to 1 and 2 being in the result 3 times, and then take 3, which leads to [1,2,3,1,2,3].
 // With list [20,37,20,21] and number 1, the result would be [20,37,21].
 
-// --- My Solution : 
+// --- My Solution :
 // function deleteNth(arr,n){
 //     let obj = {}
 //     let indexToRemove = []
@@ -203,7 +197,7 @@
 //         obj[arr[i]] = ++obj[arr[i]]
 //         console.log(`${i} : added 1 ! ${obj}`)
 //         }
-//     } 
+//     }
 //     for (let i=0 ; i<indexToRemove.length;i++) {
 //         arr.splice(indexToRemove[i]-i, 1)
 //     }
@@ -212,8 +206,7 @@
 //     return arr
 //   }
 
-
-// --- Best Practice : 
+// --- Best Practice :
 // function deleteNth(arr,x) {
 //   var cache = {};
 //   return arr.filter(function(n) {
@@ -222,14 +215,14 @@
 //   });
 // }
 
-//          ----           ----           -----           ----            ----            ----            ---- 
+//          ----           ----           -----           ----            ----            ----            ----
 // --- 9 Feb 2023 ---
-// --- Instruction : 
+// --- Instruction :
 
-// --- My Solution : 
+// --- My Solution :
 
 // function scramble(str1, str2) {
-  
+
 //     const oneWord = str1.split('').sort()
 //     const twoWord = str2.split('').sort()
 
@@ -242,7 +235,7 @@
 //     if (result === result2) console.log(true)
 //     else console.log(false)
 // }
- 
+
 // scramble('rkqodlw','world')
 // scramble('scriptingjava',     'javascript' )
 // Works but too slow ?
@@ -260,25 +253,19 @@
 //     return true;
 //   }
 
+//
 
+// --- Best Practice :
+//
 
-// 
-
-// --- Best Practice : 
-// 
-
-
-
-
-// --- Interesting : 
+// --- Interesting :
 // https://adrianmejia.com/most-popular-algorithms-time-complexity-every-programmer-should-know-free-online-tutorial-course/#:~:text=n%20indicates%20the%20input%20size,of%20the%20input%20size%20n%20.
-// Time Complexity is a thing ! 
+// Time Complexity is a thing !
 // Big O notation en algorythmie.
-//          ----           ----           -----           ----            ----            ----            ---- 
-
+//          ----           ----           -----           ----            ----            ----            ----
 
 // --- 10 Feb 23 ---
-// --- Instruction : 
+// --- Instruction :
 
 // Complete the solution so that it strips all text that follows any of a set of comment markers passed in. Any whitespace at the end of the line should also be stripped out.
 
@@ -298,12 +285,12 @@
 
 // var result = solution("apples, pears # and bananas\ngrapes\nbananas !apples", ["#", "!"])
 
-// --- My Solution : 
+// --- My Solution :
 // function solution(input, markers) {
 //     const array = [...input]
 //     let afterMarker = false
-//     let markerIndex 
-    
+//     let markerIndex
+
 //     for (marker of markers) {
 //         const numb = array.filter((v) => (v === marker)).length;
 //         for ( let i = 0; i < numb; i++){
@@ -324,17 +311,16 @@
 //                     array.splice(i-1, 1)
 //                 }
 //             }
-            
-//         }    
+
+//         }
 //         if (array[array.length-1] === " ") array.splice(array.length-1)
-//     } 
+//     }
 //     const restring= array.join('')
 //     return restring
 // }
 
-// --- Best Practice : 
+// --- Best Practice :
 // function solution(input, markers) {
-    
 
 //   console.log(input.split('\n').map(
 //     line => markers.reduce(
@@ -344,16 +330,16 @@
 //     }
 // solution("apples, pears # and bananas\ngrapes\nbananas !apples", ["#", "!"])
 
-//          ----           ----           -----           ----            ----            ----            ---- 
+//          ----           ----           -----           ----            ----            ----            ----
 
 // --- 11 Feb 2023 ---
-// --- Instruction : 
-// Write an algorithm that takes an array and moves all of the zeros to 
+// --- Instruction :
+// Write an algorithm that takes an array and moves all of the zeros to
 // the end, preserving the order of the other elements.
 
 // moveZeros([false,1,0,1,2,0,1,3,"a"]) // returns[false,1,1,2,1,3,"a"]
 
-// --- My Solution : 
+// --- My Solution :
 // function moveZeros(arr) {
 //   const arrNoZero = arr.filter((item) => item !== 0)
 //   const howManyZero = arr.length - arrNoZero.length
@@ -361,15 +347,15 @@
 //     arrNoZero.push(0)
 //   }
 //   return arrNoZero
-  
+
 // }
 
-// --- Best Practice : 
+// --- Best Practice :
 // var moveZeros = function (arr) {
 //   return arr.filter(function(x) {return x !== 0}).concat(arr.filter(function(x) {return x === 0;}));
 // }
 
-// --- Best Practice 2 : 
+// --- Best Practice 2 :
 // var moveZeros = function (arr) {
 //     return [
 //       ...(arr.filter(n => n !== 0)),
@@ -377,11 +363,11 @@
 //     ];
 //   }
 
-// --- Observation : éviter les for loops au maximum. 
-//          ----           ----           -----           ----            ----            ----            ---- 
+// --- Observation : éviter les for loops au maximum.
+//          ----           ----           -----           ----            ----            ----            ----
 
 // --- 12 Feb 23 ---
-// --- Instruction : 
+// --- Instruction :
 // Well met with Fibonacci bigger brother, AKA Tribonacci.
 
 // As the name may already reveal, it works basically like a Fibonacci, but summing the last 3 (instead of 2) numbers of the sequence to generate the next. And, worse part of it, regrettably I won't get to hear non-native Italian speakers trying to pronounce it :(
@@ -400,7 +386,7 @@
 
 // [Personal thanks to Professor Jim Fowler on Coursera for his awesome classes that I really recommend to any math enthusiast and for showing me this mathematical curiosity too with his usual contagious passion :)]
 
-// --- My Solution : 
+// --- My Solution :
 // function tribonacci(signature,n){
 //   let result = []
 //   if(n==0)return result
@@ -425,20 +411,19 @@
 //     }
 // }
 
-// --- Best Practice : 
-// function tribonacci(signature,n){  
+// --- Best Practice :
+// function tribonacci(signature,n){
 //   for (var i = 0; i < n-3; i++) { // iterate n times
 //     signature.push(signature[i] + signature[i+1] + signature[i+2]); // add last 3 array items and push to trib
 //   }
 //   return signature.slice(0, n); //return trib - length of n
 // }
 
-// --- Observation : A refaire !! 
-//          ----           ----           -----           ----            ----            ----            ---- 
-
+// --- Observation : A refaire !!
+//          ----           ----           -----           ----            ----            ----            ----
 
 // --- 13 Feb 23 ---
-// --- Instruction : 
+// --- Instruction :
 // The marketing team is spending way too much time typing in hashtags.
 // Let's help them with our own Hashtag Generator!
 
@@ -453,29 +438,27 @@
 // "    Hello     World   "                  =>  "#HelloWorld"
 // ""                                        =>  false
 
-
-// --- My Solution : 
+// --- My Solution :
 // function generateHashtag (str) {
-//     if (str == "") return false 
+//     if (str == "") return false
 //     const result = str.split(" ").map(item => item == "" ? "" : item[0].toString().toUpperCase() + item.slice(1).toLowerCase()).join("")
 //     return result.length > 139 || result == "" ? false : "#" + result
 //   }
 
-// --- Best Practice : 
+// --- Best Practice :
 // function generateHashtag (str) {
 //     if(!str || str.length < 1) return false;
-   
+
 //     var r = '#' + str.split(' ').map(function(el) {
 //       return el.charAt(0).toUpperCase() + el.slice(1).toLowerCase();
 //     }).join('');
 //     return r.length > 140?false:r;
 //  }
 
-//          ----           ----           -----           ----            ----            ----            ---- 
-
+//          ----           ----           -----           ----            ----            ----            ----
 
 // --- 14 Feb 23 ---
-// --- Instruction : 
+// --- Instruction :
 // In this kata, you will write a function that returns the positions and the values of the "peaks" (or local maxima) of a numeric array.
 
 // For example, the array arr = [0, 1, 2, 5, 1, 0] has a peak at position 3 with a value of 5 (since arr[3] equals 5).
@@ -492,7 +475,7 @@
 
 // Have fun!
 
-// --- My Solution : 
+// --- My Solution :
 // function pickPeaks(arr){
 //   let pos = []
 //   let peaks = []
@@ -521,13 +504,13 @@
 //       peaks.push(arr[posPlateau])
 //       plateau = false
 //     }
-    
+
 //   }
 //   return {pos, peaks}
 // }
 
-// --- Best Practice : 
-//---- #1 
+// --- Best Practice :
+//---- #1
 // function pickPeaks(arr){
 //   var result = {pos: [], peaks: []};
 //   if(arr.length > 2) {
@@ -550,7 +533,7 @@
 //     var pos;
 //     var peak;
 //     if(arr.length === 0) {return result;}
-    
+
 //     arr.reduce((prev, curr, index) => {
 //       if(curr > prev) {
 //         pos = index;
@@ -560,19 +543,18 @@
 //         result.peaks.push(peak);
 //         pos = -1;
 //       }
-      
+
 //       return curr;
 //     });
-    
+
 //     return result;
 //     //  return {pos:[],peaks:[]}
 //   }
 
-
-//          ----           ----           -----           ----            ----            ----            ---- 
+//          ----           ----           -----           ----            ----            ----            ----
 
 // --- 15 Feb 23 ---
-// --- Instruction : 
+// --- Instruction :
 // A friend of mine takes the sequence of all numbers from 1 to n (where n > 0).
 // Within that sequence, he chooses two numbers, a and b.
 // He says that the product of a and b should be equal to the sum of all numbers in the sequence, excluding a and b.
@@ -585,34 +567,33 @@
 // [(a, b), ...] or [[a, b], ...] or {{a, b}, ...} or ... will be sorted in increasing order of the "a".
 
 // It happens that there are several possible (a, b). The function returns an empty array (or an empty string) if no possible numbers are found which will prove that my friend has not told the truth! (Go: in this case return nil).
-// --- My Solution : 
-// 
+// --- My Solution :
+//
 // function removeNb (n) {
 //     let sum = ((n+1)/2)*n
 //     let nArray = []
 //     let result = []
-//     let b = 0 
+//     let b = 0
 //      for (let j = Math.floor(n/2) ; j<n;j++){
 //         a = j
 //         for (let k = Math.floor(n/2); k<n ; k ++ ){
-//           b = k 
+//           b = k
 //           if (a*b == sum -(a+b)) {
 //             result.push([a, b])
 //           }
 //         }
 //       }
 //       return result
-    
+
 //   }
 
+// --- Best Practice :
+//
 
-// --- Best Practice : 
-// 
-
-//          ----           ----           -----           ----            ----            ----            ---- 
+//          ----           ----           -----           ----            ----            ----            ----
 
 // --- 16 Feb 23 ---
-// --- Instruction : 
+// --- Instruction :
 // Consider a sequence u where u is defined as follows:
 
 // The number u(0) = 1 is the first one in u.
@@ -630,7 +611,7 @@
 
 // Note:
 // Focus attention on efficiency
-// --- My Solution : 
+// --- My Solution :
 // function dblLinear(n) {
 //     let x, y, z
 //     let uArr = [0]
@@ -644,18 +625,18 @@
 //     const result = [... new Set(uArr)].sort((a,b) => a-b)
 //     console.log(uArr)
 //     console.log(uArr[n+1])
-  
+
 //     return result[n+1]
-    
+
 //   }
 
-  // --- Observation : 
-  // For the big O notation : garder un if() dans le for loop c'esttrop gourmand
-  // filter ou sort aussi. Du coup tout passer après la loop, mais ça demande d'avoir un set plus grand 
-  // de x pour être raccord lors de la selection de u(n). Ici pas scalable car n+10 juste suffisant pour passer
-  // les test a grands nombres. Peut-être essayer avec n+(n/4) ou un truc du genre. 
+// --- Observation :
+// For the big O notation : garder un if() dans le for loop c'esttrop gourmand
+// filter ou sort aussi. Du coup tout passer après la loop, mais ça demande d'avoir un set plus grand
+// de x pour être raccord lors de la selection de u(n). Ici pas scalable car n+10 juste suffisant pour passer
+// les test a grands nombres. Peut-être essayer avec n+(n/4) ou un truc du genre.
 
-// --- Best Practice : 
+// --- Best Practice :
 // function dblLinear(n) {
 //   var ai = 0, bi = 0, eq = 0;
 //   var sequence = [1];
@@ -670,9 +651,9 @@
 // }
 
 //function dblLinear(n) {
-  
+
 // var u = [1], pt2 = 0, pt3 = 0; //two pointer
-    
+
 // for(var i = 1;i<=n;i++){
 //   u[i] = Math.min(2* u[pt2] + 1, 3*u[pt3] + 1);
 //   if(u[i] == 2 * u[pt2] + 1) pt2++;
@@ -682,11 +663,10 @@
 // return u[n];
 
 // }
-//          ----           ----           -----           ----            ----            ----            ---- 
-
+//          ----           ----           -----           ----            ----            ----            ----
 
 // --- 17 Feb 23 ---
-// --- Instruction : 
+// --- Instruction :
 // Given a Sudoku data structure with size NxN, N > 0 and √N == integer, write a method to validate if it has been filled out correctly.
 
 // The data structure is a multi-dimensional Array, i.e:
@@ -695,11 +675,11 @@
 //   [7,8,4,  1,5,9,  3,2,6],
 //   [5,3,9,  6,7,2,  8,4,1],
 //   [6,1,2,  4,3,8,  7,5,9],
-  
+
 //   [9,2,8,  7,1,5,  4,6,3],
 //   [3,5,7,  8,4,6,  1,9,2],
 //   [4,6,1,  9,2,3,  5,8,7],
-  
+
 //   [8,7,6,  3,9,4,  2,1,5],
 //   [2,4,3,  5,6,1,  9,7,8],
 //   [1,9,5,  2,8,7,  6,3,4]
@@ -711,8 +691,8 @@
 // Columns may only contain integers: 1..N (N included)
 // 'Little squares' (3x3 in example above) may also only contain integers: 1..N (N included)
 
-// --- My Solution : 
-// var Sudoku = function(data) 
+// --- My Solution :
+// var Sudoku = function(data)
 // {
 //   //   Private methods
 //   // -------------------------
@@ -724,7 +704,7 @@
 //         if (data.length !== data[i].length) return false
 //          const verifArray = new Set(data[i])
 //         if (verifArray.size !== data[i].length) return false
-//       } 
+//       }
 //     let N = data.length
 //     let petitN = Math.sqrt(N)
 //     let toPush = []
@@ -744,20 +724,18 @@
 //     }
 //     return true
 //   }
-  
 
 //   //   Public methods
 //   // -------------------------
 //   return {
 //     isValid: function() {
-      
+
 //       return testMethod()
 //     }
 //   };
 // };
 
-
-// --- Best Practice : 
+// --- Best Practice :
 // function Sudoku(board) {
 //   var sqrt = Math.sqrt(board.length);
 //   var esum = board.length * (board.length + 1) / 2;
@@ -783,13 +761,12 @@
 //   };
 // }
 
-// --- Comment : 
-// Really ugly, but worked. This nested for loops are a nightmare. I Should have use the privates methods more. Need to review this one. 
-//          ----           ----           -----           ----            ----            ----            ---- 
-
+// --- Comment :
+// Really ugly, but worked. This nested for loops are a nightmare. I Should have use the privates methods more. Need to review this one.
+//          ----           ----           -----           ----            ----            ----            ----
 
 // --- 20 Feb 23 ---
-// --- Instruction : 
+// --- Instruction :
 //Given the string representations of two integers, return the string representation of the sum of those integers.
 
 // For example:
@@ -801,10 +778,9 @@
 
 // Python: your solution need to work with huge numbers (about a milion digits), converting to int will not work.
 
-
-// --- My Solution : 
-// 
-// function sumStrings(a,b) { 
+// --- My Solution :
+//
+// function sumStrings(a,b) {
 //   const lengthAB = a.length < b.length ? b.length : a.length
 //   const aArr = a.split("").map(item => Number(item))
 //   const bArr = b.split("").map(item => Number(item))
@@ -813,7 +789,7 @@
 //   let calcul = (sumToPush) => {
 //     console.log(leftToAdd)
 //     if (leftToAdd) {
-//       sumToPush = sumToPush + leftToAdd 
+//       sumToPush = sumToPush + leftToAdd
 //       leftToAdd = false
 //     }
 //   if (sumToPush == 0 && aArr.length == 0 && bArr.length == 0) return
@@ -831,17 +807,17 @@
 //       sumToPush = 0
 //     }
 //     else if (aArr.length == 0 || bArr.length == 0 ) {
-//     sumToPush = aArr.length == 0 ? bArr.pop() : aArr.pop() 
+//     sumToPush = aArr.length == 0 ? bArr.pop() : aArr.pop()
 //     }
-//     else sumToPush = aArr.pop()+bArr.pop() 
-    
+//     else sumToPush = aArr.pop()+bArr.pop()
+
 //     calcul(sumToPush)
 //   }
 //   return(arrToReverseFinal.reverse().join(""))
 // }
 
-// --- Best Practice : 
-//  function sumStrings(a,b) { 
+// --- Best Practice :
+//  function sumStrings(a,b) {
 //   return (BigInt(a) + BigInt(b)).toString();
 // }
 
@@ -868,14 +844,13 @@
 //   return sumDigits.join('');
 // }
 
-// --- Comment : 
-// Pas Simple ! 
+// --- Comment :
+// Pas Simple !
 
-//          ----           ----           -----           ----            ----            ----            ---- 
-
+//          ----           ----           -----           ----            ----            ----            ----
 
 // --- 21 Feb 23 ---
-// --- Instruction : 
+// --- Instruction :
 //To give credit where credit is due: This problem was taken from the ACMICPC-Northwest Regional Programming Contest. Thank you problem writers.
 
 // You are helping an archaeologist decipher some runes. He knows that this ancient society used a Base 10 system, and that they never start a number with a leading zero. He's figured out most of the digits as well as a few operators, but he needs your help to figure out the rest.
@@ -888,8 +863,8 @@
 // Given an expression, figure out the value of the rune represented by the question mark. If more than one digit works, give the lowest one. If no digit works, well, that's bad news for the professor - it means that he's got some of his runes wrong. output -1 in that case.
 
 // Complete the method to solve the expression to find the value of the unknown rune. The method takes a string as a paramater repressenting the expression and will return an int value representing the unknown rune or -1 if no such rune exists.
-// --- My Solution : 
-// 
+// --- My Solution :
+//
 // function solveExpression(exp) {
 //   const mathArr = exp.split('=')
 //   const op = mathArr[0].split('')
@@ -904,17 +879,139 @@
 //     const rightOp = op.filter((item, index) => index > op.indexOf("*"))
 //   }
 //   else {
-    
+
 //   }
-  
+
 //   for (num of possibleNum){
-    
+
 //   }
 // }
 
-// --- Best Practice : 
-// 
+// --- Best Practice :
+//
 
-// --- Comment : 
+// --- Comment :
 
-//          ----           ----           -----           ----            ----            ----            ---- 
+//          ----           ----           -----           ----            ----            ----            ----
+
+// --- 1 March ---
+// --- Instruction :
+// Your task in order to complete this Kata is to write a function which formats a duration, given as a number of seconds, in a human-friendly way.
+
+// The function must accept a non-negative integer. If it is zero, it just returns "now". Otherwise, the duration is expressed as a combination of years, days, hours, minutes and seconds.
+
+// It is much easier to understand with an example:
+
+// * For seconds = 62, your function should return
+//     "1 minute and 2 seconds"
+// * For seconds = 3662, your function should return
+//     "1 hour, 1 minute and 2 seconds"
+// For the purpose of this Kata, a year is 365 days and a day is 24 hours.
+
+// Note that spaces are important.
+
+// Detailed rules
+// The resulting expression is made of components like 4 seconds, 1 year, etc. In general, a positive integer and one of the valid units of time, separated by a space. The unit of time is used in plural if the integer is greater than 1.
+
+// The components are separated by a comma and a space (", "). Except the last component, which is separated by " and ", just like it would be written in English.
+
+// A more significant units of time will occur before than a least significant one. Therefore, 1 second and 1 year is not correct, but 1 year and 1 second is.
+
+// Different components have different unit of times. So there is not repeated units like in 5 seconds and 1 second.
+
+// A component will not appear at all if its value happens to be zero. Hence, 1 minute and 0 seconds is not valid, but it should be just 1 minute.
+
+// A unit of time must be used "as much as possible". It means that the function should not return 61 seconds, but 1 minute and 1 second instead. Formally, the duration specified by of a component must not be greater than any valid more significant unit of time.
+// --- My Solution :
+let result = [];
+function formatDuration(seconds) {
+  if (seconds == 0) return "now";
+  else {
+    getYears(seconds);
+  }
+  let finalResult = [];
+  for (let i = 0; i < result.length; i++) {
+    if (i == result.length - 2) {
+      finalResult.push(result[i] + " and ");
+    } else if (i !== result.length - 1 && i !== result.length - 2) {
+      finalResult.push(result[i] + ", ");
+    } else finalResult.push(result[i]);
+  }
+  result = [];
+  return finalResult.join("");
+}
+
+const getYears = (secs) => {
+  const toYear = 31536000;
+  const year = Math.floor(secs / toYear);
+  if (year == 0) getDays(secs);
+  else {
+    result.push(year == 1 ? `1 year` : `${year} years`);
+    getDays(secs % toYear);
+  }
+};
+const getDays = (secs) => {
+  const toDay = 86400;
+  const day = Math.floor(secs / toDay);
+  if (day !== 0) {
+    result.push(day == 1 ? `1 day` : `${day} days`);
+    getDays(secs % toDay);
+  } else getHour(secs);
+};
+const getHour = (secs) => {
+  const toHour = 3600;
+  const hour = Math.floor(secs / toHour);
+  if (hour !== 0) {
+    result.push(hour == 1 ? `1 hour` : `${hour} hours`);
+    getMinutes(secs % toHour);
+  } else getMinutes(secs);
+};
+const getMinutes = (secs) => {
+  const toMinutes = 60;
+  const minute = Math.floor(secs / toMinutes);
+  if (minute !== 0) {
+    result.push(minute == 1 ? `1 minute` : `${minute} minutes`);
+    getSecs(secs % toMinutes);
+  } else getSecs(secs);
+};
+const getSecs = (secs) => {
+  if (secs == 1) result.push("1 second");
+  else if (secs !== 0) result.push(`${secs} seconds`);
+};
+
+// --- Best Practice :
+//var formatDuration = (function () {
+
+// return function formatDuration (seconds) {
+//   return [{name: 'year',   size: 365 * 24 * 60 * 60 * 1},
+//           {name: 'day',    size:       24 * 60 * 60 * 1},
+//           {name: 'hour',   size:            60 * 60 * 1},
+//           {name: 'minute', size:                 60 * 1},
+//           {name: 'second', size:                      1}].
+//           reduce(parse, { parts: [], seconds: seconds }).
+//           parts.
+//           reduce(join, 'now');
+// };
+
+// function parse (result, part) {
+//   var quantity = Math.floor(result.seconds / part.size);
+//   if (quantity > 0) {
+//     result.seconds -= quantity * part.size;
+//     result.parts.push(quantity + ' ' + part.name + (quantity == 1 ? '' : 's'));
+//   }
+//   return result;
+// }
+
+// function join (result, part, index, arr) {
+//   switch (index) {
+//     case 0: return part;
+//     case arr.length - 1: return result + ' and ' + part;
+//     default: return result + ', ' + part;
+//   }
+// }
+
+// }());
+
+// --- Comment :
+
+//          ----           ----           -----           ----            ----            ----            ----
