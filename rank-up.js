@@ -923,61 +923,61 @@
 
 // A unit of time must be used "as much as possible". It means that the function should not return 61 seconds, but 1 minute and 1 second instead. Formally, the duration specified by of a component must not be greater than any valid more significant unit of time.
 // --- My Solution :
-let result = [];
-function formatDuration(seconds) {
-  if (seconds == 0) return "now";
-  else {
-    getYears(seconds);
-  }
-  let finalResult = [];
-  for (let i = 0; i < result.length; i++) {
-    if (i == result.length - 2) {
-      finalResult.push(result[i] + " and ");
-    } else if (i !== result.length - 1 && i !== result.length - 2) {
-      finalResult.push(result[i] + ", ");
-    } else finalResult.push(result[i]);
-  }
-  result = [];
-  return finalResult.join("");
-}
+// let result = [];
+// function formatDuration(seconds) {
+//   if (seconds == 0) return "now";
+//   else {
+//     getYears(seconds);
+//   }
+//   let finalResult = [];
+//   for (let i = 0; i < result.length; i++) {
+//     if (i == result.length - 2) {
+//       finalResult.push(result[i] + " and ");
+//     } else if (i !== result.length - 1 && i !== result.length - 2) {
+//       finalResult.push(result[i] + ", ");
+//     } else finalResult.push(result[i]);
+//   }
+//   result = [];
+//   return finalResult.join("");
+// }
 
-const getYears = (secs) => {
-  const toYear = 31536000;
-  const year = Math.floor(secs / toYear);
-  if (year == 0) getDays(secs);
-  else {
-    result.push(year == 1 ? `1 year` : `${year} years`);
-    getDays(secs % toYear);
-  }
-};
-const getDays = (secs) => {
-  const toDay = 86400;
-  const day = Math.floor(secs / toDay);
-  if (day !== 0) {
-    result.push(day == 1 ? `1 day` : `${day} days`);
-    getDays(secs % toDay);
-  } else getHour(secs);
-};
-const getHour = (secs) => {
-  const toHour = 3600;
-  const hour = Math.floor(secs / toHour);
-  if (hour !== 0) {
-    result.push(hour == 1 ? `1 hour` : `${hour} hours`);
-    getMinutes(secs % toHour);
-  } else getMinutes(secs);
-};
-const getMinutes = (secs) => {
-  const toMinutes = 60;
-  const minute = Math.floor(secs / toMinutes);
-  if (minute !== 0) {
-    result.push(minute == 1 ? `1 minute` : `${minute} minutes`);
-    getSecs(secs % toMinutes);
-  } else getSecs(secs);
-};
-const getSecs = (secs) => {
-  if (secs == 1) result.push("1 second");
-  else if (secs !== 0) result.push(`${secs} seconds`);
-};
+// const getYears = (secs) => {
+//   const toYear = 31536000;
+//   const year = Math.floor(secs / toYear);
+//   if (year == 0) getDays(secs);
+//   else {
+//     result.push(year == 1 ? `1 year` : `${year} years`);
+//     getDays(secs % toYear);
+//   }
+// };
+// const getDays = (secs) => {
+//   const toDay = 86400;
+//   const day = Math.floor(secs / toDay);
+//   if (day !== 0) {
+//     result.push(day == 1 ? `1 day` : `${day} days`);
+//     getDays(secs % toDay);
+//   } else getHour(secs);
+// };
+// const getHour = (secs) => {
+//   const toHour = 3600;
+//   const hour = Math.floor(secs / toHour);
+//   if (hour !== 0) {
+//     result.push(hour == 1 ? `1 hour` : `${hour} hours`);
+//     getMinutes(secs % toHour);
+//   } else getMinutes(secs);
+// };
+// const getMinutes = (secs) => {
+//   const toMinutes = 60;
+//   const minute = Math.floor(secs / toMinutes);
+//   if (minute !== 0) {
+//     result.push(minute == 1 ? `1 minute` : `${minute} minutes`);
+//     getSecs(secs % toMinutes);
+//   } else getSecs(secs);
+// };
+// const getSecs = (secs) => {
+//   if (secs == 1) result.push("1 second");
+//   else if (secs !== 0) result.push(`${secs} seconds`);
+// };
 
 // --- Best Practice :
 //var formatDuration = (function () {
@@ -1013,5 +1013,63 @@ const getSecs = (secs) => {
 // }());
 
 // --- Comment :
+
+//          ----           ----           -----           ----            ----            ----            ----
+
+// --- 03 March ---
+// --- Instruction :
+// You are given an array(list) strarr of strings and an integer k. Your task is to return the first longest string consisting of k consecutive strings taken in the array.
+
+// Examples:
+// strarr = ["tree", "foling", "trashy", "blue", "abcdef", "uvwxyz"], k = 2
+
+// Concatenate the consecutive strings of strarr by 2, we get:
+
+// treefoling   (length 10)  concatenation of strarr[0] and strarr[1]
+// folingtrashy ("      12)  concatenation of strarr[1] and strarr[2]
+// trashyblue   ("      10)  concatenation of strarr[2] and strarr[3]
+// blueabcdef   ("      10)  concatenation of strarr[3] and strarr[4]
+// abcdefuvwxyz ("      12)  concatenation of strarr[4] and strarr[5]
+
+// Two strings are the longest: "folingtrashy" and "abcdefuvwxyz".
+// The first that came is "folingtrashy" so
+// longest_consec(strarr, 2) should return "folingtrashy".
+
+// In the same way:
+// longest_consec(["zone", "abigail", "theta", "form", "libe", "zas", "theta", "abigail"], 2) --> "abigailtheta"
+// n being the length of the string array, if n = 0 or k > n or k <= 0 return "" (return Nothing in Elm, "nothing" in Erlang).
+
+// Note
+// consecutive strings : follow one after another without an interruption
+
+// --- My Solution :
+//
+
+// function longestConsec(strarr, k, arr = []) {
+//   if (strarr.length == 0 || k > strarr.length || k <= 0) return "";
+//   if (strarr.length == k) {
+//     arr.push(strarr.slice(0, k).join("").split(""));
+//     return arr.sort((a, b) => b.length - a.length)[0].join("");
+//   }
+//   arr.push(strarr.slice(0, k).join("").split(""));
+//   strarr.shift();
+//   return longestConsec(strarr, k, arr);
+// }
+
+// --- Best Practice :
+// function longestConsec(strarr, k) {
+// 		var longest = "";
+// 		for(var i=0;k>0 && i<=strarr.length-k;i++){
+// 			var tempArray = strarr.slice(i,i+k);
+// 			var tempStr = tempArray.join("");
+// 			if(tempStr.length > longest.length){
+// 				longest = tempStr;
+// 			}
+// 		}
+// 		return longest;
+// }
+
+// --- Comment :
+// --- I watched the video from web dev cody on recurives fonctions, so i wanted to try to solve this on with it. It happened to work. It's kind of elegant.
 
 //          ----           ----           -----           ----            ----            ----            ----
