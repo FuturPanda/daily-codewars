@@ -1073,3 +1073,32 @@
 // --- I watched the video from web dev cody on recurives fonctions, so i wanted to try to solve this on with it. It happened to work. It's kind of elegant.
 
 //          ----           ----           -----           ----            ----            ----            ----
+function add(a, b) {
+  const arrA = a.split("");
+  const arrB = b.split("");
+  let result = [];
+  for (
+    let i = 0, sum = [], result = [];
+    i < (a.length > b.length ? a.length : b.length);
+    i++
+  ) {
+    if (sum.length == 0) {
+      sum = (Number(arrA.splice(-1)) + Number(arrB.splice(-1)))
+        .toString()
+        .split("");
+    } else {
+      sum = (Number(arrA.splice(-1)) + Number(arrB.splice(-1)) + Number(sum[0]))
+        .toString()
+        .split("");
+    }
+    result.push(sum.pop());
+    if (arrA.length == 0 && arrB.length == 0 && sum.length !== 0) {
+      result.push(sum.pop());
+    }
+  }
+  return result.reverse().join("");
+}
+
+console.log(add("143", "93"));
+// add('63829983432984289347293874', '90938498237058927340892374089')
+//"91002328220491911630239667963"
