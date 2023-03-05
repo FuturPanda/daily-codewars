@@ -1073,32 +1073,108 @@
 // --- I watched the video from web dev cody on recurives fonctions, so i wanted to try to solve this on with it. It happened to work. It's kind of elegant.
 
 //          ----           ----           -----           ----            ----            ----            ----
-function add(a, b) {
-  const arrA = a.split("");
-  const arrB = b.split("");
-  let result = [];
-  for (
-    let i = 0, sum = [], result = [];
-    i < (a.length > b.length ? a.length : b.length);
-    i++
-  ) {
-    if (sum.length == 0) {
-      sum = (Number(arrA.splice(-1)) + Number(arrB.splice(-1)))
-        .toString()
-        .split("");
-    } else {
-      sum = (Number(arrA.splice(-1)) + Number(arrB.splice(-1)) + Number(sum[0]))
-        .toString()
-        .split("");
-    }
-    result.push(sum.pop());
-    if (arrA.length == 0 && arrB.length == 0 && sum.length !== 0) {
-      result.push(sum.pop());
+// --- 4 March ---
+// --- Instruction :
+// We need to sum big numbers and we require your help.
+
+// Write a function that returns the sum of two numbers. The input numbers are strings and the function must return a string.
+
+// Example
+// add("123", "321"); -> "444"
+// add("11", "99");   -> "110"
+// Notes
+// The input numbers are big.
+// The input is a string of only digits
+// The numbers are positives
+
+// --- My Solution :
+//
+// function add(a, b) {
+//   const arrA = a.split("");
+//   const arrB = b.split("");
+//   let result = [];
+//   for (
+//     let i = 0, sum = [], result = [];
+//     i < (a.length > b.length ? a.length : b.length);
+//     i++
+//   ) {
+//     if (sum.length == 0) {
+//       sum = (Number(arrA.splice(-1)) + Number(arrB.splice(-1)))
+//         .toString()
+//         .split("");
+//     } else {
+//       sum = (Number(arrA.splice(-1)) + Number(arrB.splice(-1)) + Number(sum[0]))
+//         .toString()
+//         .split("");
+//     }
+//     result.push(sum.pop());
+//     if (arrA.length == 0 && arrB.length == 0 && sum.length !== 0) {
+//       result.push(sum.pop());
+//     }
+//   }
+//   return result.reverse().join("");
+// }
+
+// --- Best Practice :
+// function add (a, b) {
+// var res = '', c = 0
+// a = a.split('')
+// b = b.split('')
+// while (a.length || b.length || c) {
+//   c += ~~a.pop() + ~~b.pop()
+//   res = c % 10 + res
+//   c = c > 9
+// }
+// return res
+
+// --- Comment :
+// In some browsers, using ~~ can faster than using Math.floor.
+
+//          ----           ----           -----           ----            ----            ----            ----
+
+function validateBattlefield(field) {
+  // let pieces = {
+  //   battleships: 0,
+  //   cruisers: 0,
+  //   destroyers: 0,
+  //   submarines: 0,
+  // };
+  let i;
+  let searching = false;
+  let current = 0;
+  for (i = 0; i < 10; i++) {
+    for (j = 0; j < 10; j++) {
+      if (field[i][j] == 0) continue;
+      else {
+        searchOne(field, i, j);
+      }
     }
   }
-  return result.reverse().join("");
 }
+const searchOne = (field, line, start, steps = 0) => {
+  if (field[line][start + 1] == 1) {
+    current += 1;
+    searchOne(field, line, start + 1, steps + 1);
+  } else if (field[line + 1][start] == 1) {
+    current += 1;
+    searchOne(field, line, start + 1, steps + 1);
+  }
+};
+let test = [
+  [0, 0, 0, 0, 1, 1, 1, 0, 0, 0],
+  [0, 0, 0, 0, 0, 0, 0, 0, 1, 0],
+];
+// validateBattlefield(test);
 
-console.log(add("143", "93"));
-// add('63829983432984289347293874', '90938498237058927340892374089')
-//"91002328220491911630239667963"
+// [
+//   [1, 0, 0, 0, 0, 1, 1, 0, 0, 0],
+//   [1, 0, 1, 0, 0, 0, 0, 0, 1, 0],
+//   [1, 0, 1, 0, 1, 1, 1, 0, 1, 0],
+//   [1, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+//   [0, 0, 0, 0, 0, 0, 0, 0, 1, 0],
+//   [0, 0, 0, 0, 1, 1, 1, 0, 0, 0],
+//   [0, 0, 0, 0, 0, 0, 0, 0, 1, 0],
+//   [0, 0, 0, 1, 0, 0, 0, 0, 0, 0],
+//   [0, 0, 0, 0, 0, 0, 0, 1, 0, 0],
+//   [0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+// ]
