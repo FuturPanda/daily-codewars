@@ -1132,39 +1132,72 @@
 
 //          ----           ----           -----           ----            ----            ----            ----
 
+let searching = false;
+let dir = "hor"; // "ver"
+// let steps = 0;
+// const ships = {
+//   battleship: 1,
+//   cruiser: 2,
+//   destroyer: 3,
+//   submarine: 4,
+// total: 20;
+// };
 function validateBattlefield(field) {
-  // let pieces = {
-  //   battleships: 0,
-  //   cruisers: 0,
-  //   destroyers: 0,
-  //   submarines: 0,
-  // };
-  let i;
-  let searching = false;
-  let current = 0;
-  for (i = 0; i < 10; i++) {
-    for (j = 0; j < 10; j++) {
-      if (field[i][j] == 0) continue;
-      else {
-        searchOne(field, i, j);
+  let cells = {};
+  let ships = [];
+  for (let i = 0; i < field.length; i++) {
+    for (j = 0; j < field[i].length; j++) {
+      if (field[i][j] == 1) {
+        cells[[i, j]] = [[i, j]];
+        if (field[i] && field[i][j + 1] == 1) cells[[i, j]].push([i, j + 1]);
+        if (field[i] && field[i][j - 1] == 1) cells[[i, j]].push([i, j - 1]);
+        if (field[i + 1] && field[i + 1][j] == 1)
+          cells[[i, j]].push([i + 1, j]);
+        if (field[i - 1] && field[i - 1][j] == 1)
+          cells[[i, j]].push([i - 1, j]);
+        if (field[i + 1] && field[i + 1][j + 1] == 1)
+          cells[[i, j]].push([i + 1, j + 1]);
+        if (field[i - 1] && field[i - 1][j + 1] == 1)
+          cells[[i, j]].push([i - 1, j + 1]);
+        if (field[i + 1] && field[i + 1][j - 1] == 1)
+          cells[[i, j]].push([i + 1, j - 1]);
+        if (field[i - 1] && field[i - 1][j - 1] == 1)
+          cells[[i, j]].push([i - 1, j - 1]);
       }
     }
   }
-}
-const searchOne = (field, line, start, steps = 0) => {
-  if (field[line][start + 1] == 1) {
-    current += 1;
-    searchOne(field, line, start + 1, steps + 1);
-  } else if (field[line + 1][start] == 1) {
-    current += 1;
-    searchOne(field, line, start + 1, steps + 1);
+  for (item in cells) {
+    if (cells[item].length > 3) return false;
+    ships.push(...cells[item]);
   }
-};
-let test = [
-  [0, 0, 0, 0, 1, 1, 1, 0, 0, 0],
-  [0, 0, 0, 0, 0, 0, 0, 0, 1, 0],
+  const toRes = ships;
+  let res = new Set(toRes);
+  const resPlus = new Set(res);
+  console.log(resPlus);
+  console.log(res);
+  console.log(res.size);
+  if (ships !== 20) return false;
+  return true;
+}
+
+const test = [
+  [0, 0, 1, 1, 0, 0],
+  [0, 0, 1, 1, 0, 0],
 ];
-// validateBattlefield(test);
+console.log(
+  validateBattlefield([
+    [1, 0, 0, 0, 0, 1, 1, 0, 0, 0],
+    [1, 0, 1, 0, 0, 0, 0, 0, 1, 0],
+    [1, 0, 1, 0, 1, 1, 1, 0, 1, 0],
+    [1, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+    [0, 0, 0, 0, 0, 0, 0, 0, 1, 0],
+    [0, 0, 0, 0, 1, 1, 1, 0, 0, 0],
+    [0, 0, 0, 0, 0, 0, 0, 0, 1, 0],
+    [0, 0, 0, 1, 0, 0, 0, 0, 0, 0],
+    [0, 0, 0, 0, 0, 0, 0, 1, 0, 0],
+    [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+  ])
+);
 
 // [
 //   [1, 0, 0, 0, 0, 1, 1, 0, 0, 0],
