@@ -1132,23 +1132,78 @@
 
 //          ----           ----           -----           ----            ----            ----            ----
 
-let searching = false;
-let dir = "hor"; // "ver"
+// let searching = false;
+// let dir = "hor"; // "ver"
 // let steps = 0;
 // const ships = {
-//   battleship: 1,
-//   cruiser: 2,
-//   destroyer: 3,
-//   submarine: 4,
+//   battleship: 1, *4
+//   cruiser: 2, *3
+//   destroyer: 3, *2
+//   submarine: 4, *1
 // total: 20;
 // };
-function validateBattlefield(field) {
+let validateBattlefield = (field) => {
+  const adjencylist = makeAdjencyList(field);
+  let count = 0;
+  let ships = {};
+  ships.result = {
+    battleship: 0,
+    cruiser: 0,
+    destroyer: 0,
+    submarine: 0,
+  };
+  let visited = new Set();
+  let i = 1;
+  console.log(adjencylist);
+  for (let node in adjencylist) {
+    ships[i] = new Set();
+
+    let shipCount = explore(adjencylist, node, visited, ships, i);
+    if (shipCount === true) {
+      count += 1;
+    }
+
+    const check = checkForm(ships[i]);
+    if (check == false) return false;
+
+    if (ships[i].size === 1) {
+      ships.result.submarine += 1;
+    } else if (ships[i].size === 2) {
+      ships.result.destroyer += 1;
+    } else if (ships[i].size === 3) {
+      ships.result.cruiser += 1;
+    } else if (ships[i].size === 4) {
+      ships.result.battleship += 1;
+    }
+    i++;
+  }
+  console.log(ships);
+  if (count !== 10) return false;
+  if (
+    ships.result.submarine == 4 &&
+    ships.result.destroyer == 3 &&
+    ships.result.cruiser == 2 &&
+    ships.result.battleship == 1
+  )
+    return true;
+  else return false;
+};
+const explore = (graph, current, visited, ships, i) => {
+  if (visited.has(String(current))) return false;
+  visited.add(String(current));
+  ships[i].add(String(current));
+  for (neighbor of graph[current]) {
+    explore(graph, neighbor, visited, ships, i);
+  }
+  return true;
+};
+
+function makeAdjencyList(field) {
   let cells = {};
-  let ships = [];
   for (let i = 0; i < field.length; i++) {
     for (j = 0; j < field[i].length; j++) {
       if (field[i][j] == 1) {
-        cells[[i, j]] = [[i, j]];
+        cells[[i, j]] = [];
         if (field[i] && field[i][j + 1] == 1) cells[[i, j]].push([i, j + 1]);
         if (field[i] && field[i][j - 1] == 1) cells[[i, j]].push([i, j - 1]);
         if (field[i + 1] && field[i + 1][j] == 1)
@@ -1166,48 +1221,36 @@ function validateBattlefield(field) {
       }
     }
   }
-  for (item in cells) {
-    if (cells[item].length > 3) return false;
-    ships.push(...cells[item]);
-  }
-  const toRes = ships;
-  let res = new Set(toRes);
-  const resPlus = new Set(res);
-  console.log(resPlus);
-  console.log(res);
-  console.log(res.size);
-  if (ships !== 20) return false;
-  return true;
+  return cells;
 }
+const checkForm = (set) => {
+  const arrfromSet = [...set];
+  const tuples = arrfromSet.map((item) => item.split(","));
+  if (tuples.length > 2) {
+    const sameDenom = [];
+    for (tuple of tuples) {
+      sameDenom.push(...tuple);
+    }
+    console.log(sameDenom);
+  }
+};
 
-const test = [
-  [0, 0, 1, 1, 0, 0],
-  [0, 0, 1, 1, 0, 0],
-];
+// const test = [
+//   [0, 0, 1, 1, 0, 0],
+//   [0, 0, 1, 1, 0, 0],
+// ];
+console.log(String([1, 9]));
 console.log(
   validateBattlefield([
     [1, 0, 0, 0, 0, 1, 1, 0, 0, 0],
-    [1, 0, 1, 0, 0, 0, 0, 0, 1, 0],
-    [1, 0, 1, 0, 1, 1, 1, 0, 1, 0],
-    [1, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+    [1, 0, 0, 0, 0, 0, 0, 0, 1, 0],
+    [1, 1, 0, 0, 1, 1, 1, 0, 1, 0],
+    [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
     [0, 0, 0, 0, 0, 0, 0, 0, 1, 0],
     [0, 0, 0, 0, 1, 1, 1, 0, 0, 0],
     [0, 0, 0, 0, 0, 0, 0, 0, 1, 0],
-    [0, 0, 0, 1, 0, 0, 0, 0, 0, 0],
-    [0, 0, 0, 0, 0, 0, 0, 1, 0, 0],
+    [0, 1, 0, 1, 0, 0, 0, 0, 0, 0],
+    [0, 1, 0, 0, 0, 0, 0, 1, 0, 0],
     [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
   ])
 );
-
-// [
-//   [1, 0, 0, 0, 0, 1, 1, 0, 0, 0],
-//   [1, 0, 1, 0, 0, 0, 0, 0, 1, 0],
-//   [1, 0, 1, 0, 1, 1, 1, 0, 1, 0],
-//   [1, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-//   [0, 0, 0, 0, 0, 0, 0, 0, 1, 0],
-//   [0, 0, 0, 0, 1, 1, 1, 0, 0, 0],
-//   [0, 0, 0, 0, 0, 0, 0, 0, 1, 0],
-//   [0, 0, 0, 1, 0, 0, 0, 0, 0, 0],
-//   [0, 0, 0, 0, 0, 0, 0, 1, 0, 0],
-//   [0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
-// ]
