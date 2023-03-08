@@ -1154,7 +1154,6 @@ let validateBattlefield = (field) => {
   };
   let visited = new Set();
   let i = 1;
-  console.log(adjencylist);
   for (let node in adjencylist) {
     ships[i] = new Set();
 
@@ -1177,7 +1176,6 @@ let validateBattlefield = (field) => {
     }
     i++;
   }
-  console.log(ships);
   if (count !== 10) return false;
   if (
     ships.result.submarine == 4 &&
@@ -1226,26 +1224,39 @@ function makeAdjencyList(field) {
 const checkForm = (set) => {
   const arrfromSet = [...set];
   const tuples = arrfromSet.map((item) => item.split(","));
+  let check = [];
   if (tuples.length > 2) {
-    const sameDenom = [];
-    for (tuple of tuples) {
-      sameDenom.push(...tuple);
+    for (let i = 0; i < tuples.length; i++) {
+      if (tuples[i + 1]) {
+        let pairString = [];
+        pairString.push(tuples[i][0] - tuples[i + 1][0]);
+        pairString.push(tuples[i][1] - tuples[i + 1][1]);
+        check.push(pairString.join(","));
+      }
     }
-    console.log(sameDenom);
   }
+  if (check.length > 0) {
+    const filteredCheck = check.filter((item, index) => {
+      if (item === check[index + 1]) {
+        return true;
+      } else if (item === check[index - 1]) return true;
+      else return false;
+    });
+    if (check.length !== filteredCheck.length) return false;
+  }
+  return true;
 };
 
 // const test = [
 //   [0, 0, 1, 1, 0, 0],
 //   [0, 0, 1, 1, 0, 0],
 // ];
-console.log(String([1, 9]));
 console.log(
   validateBattlefield([
     [1, 0, 0, 0, 0, 1, 1, 0, 0, 0],
     [1, 0, 0, 0, 0, 0, 0, 0, 1, 0],
-    [1, 1, 0, 0, 1, 1, 1, 0, 1, 0],
-    [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+    [1, 0, 0, 0, 1, 1, 1, 0, 1, 0],
+    [1, 0, 0, 0, 0, 0, 0, 0, 0, 0],
     [0, 0, 0, 0, 0, 0, 0, 0, 1, 0],
     [0, 0, 0, 0, 1, 1, 1, 0, 0, 0],
     [0, 0, 0, 0, 0, 0, 0, 0, 1, 0],
