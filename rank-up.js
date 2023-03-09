@@ -1132,136 +1132,162 @@
 
 //          ----           ----           -----           ----            ----            ----            ----
 
-// let searching = false;
-// let dir = "hor"; // "ver"
-// let steps = 0;
-// const ships = {
-//   battleship: 1, *4
-//   cruiser: 2, *3
-//   destroyer: 3, *2
-//   submarine: 4, *1
-// total: 20;
-// };
-let validateBattlefield = (field) => {
-  const adjencylist = makeAdjencyList(field);
-  let count = 0;
-  let ships = {};
-  ships.result = {
-    battleship: 0,
-    cruiser: 0,
-    destroyer: 0,
-    submarine: 0,
-  };
-  let visited = new Set();
-  let i = 1;
-  for (let node in adjencylist) {
-    ships[i] = new Set();
 
-    let shipCount = explore(adjencylist, node, visited, ships, i);
-    if (shipCount === true) {
-      count += 1;
-    }
 
-    const check = checkForm(ships[i]);
-    if (check == false) return false;
+// --- 8 March 23 ---
+// --- Instruction : 
+// Write a method that takes a field for well-known board game "Battleship" as an argument and returns true if it has a valid disposition of ships, false otherwise. Argument is guaranteed to be 10*10 two-dimension array. Elements in the array are numbers, 0 if the cell is free and 1 if occupied by ship.
 
-    if (ships[i].size === 1) {
-      ships.result.submarine += 1;
-    } else if (ships[i].size === 2) {
-      ships.result.destroyer += 1;
-    } else if (ships[i].size === 3) {
-      ships.result.cruiser += 1;
-    } else if (ships[i].size === 4) {
-      ships.result.battleship += 1;
-    }
-    i++;
-  }
-  if (count !== 10) return false;
-  if (
-    ships.result.submarine == 4 &&
-    ships.result.destroyer == 3 &&
-    ships.result.cruiser == 2 &&
-    ships.result.battleship == 1
-  )
-    return true;
-  else return false;
+// Battleship (also Battleships or Sea Battle) is a guessing game for two players. Each player has a 10x10 grid containing several "ships" and objective is to destroy enemy's forces by targetting individual cells on his field. The ship occupies one or more cells in the grid. Size and number of ships may differ from version to version. In this kata we will use Soviet/Russian version of the game.
+
+
+// Before the game begins, players set up the board and place the ships accordingly to the following rules:
+// There must be single battleship (size of 4 cells), 2 cruisers (size 3), 3 destroyers (size 2) and 4 submarines (size 1). Any additional ships are not allowed, as well as missing ships.
+// Each ship must be a straight line, except for submarines, which are just single cell.
+
+// The ship cannot overlap or be in contact with any other ship, neither by edge nor by corner.
+
+// --- My Solution : 
+// 
+// let validateBattlefield = (field) => {
+//   const adjencylist = makeAdjencyList(field);
+//   let count = 0;
+//   let ships = {};
+//   ships.result = {
+//     battleship: 0,
+//     cruiser: 0,
+//     destroyer: 0,
+//     submarine: 0,
+//   };
+//   let visited = new Set();
+//   let i = 1;
+//   for (let node in adjencylist) {
+//     ships[i] = new Set();
+    
+//     let shipCount = explore(adjencylist, node, visited, ships, i);
+//     if (shipCount === true) {
+//       count += 1;
+//     }
+    
+//     const check = checkForm(ships[i]);
+//     if (check == false) return false;
+    
+//     if (ships[i].size === 1) {
+//       ships.result.submarine += 1;
+//     } else if (ships[i].size === 2) {
+//       ships.result.destroyer += 1;
+//     } else if (ships[i].size === 3) {
+//       ships.result.cruiser += 1;
+//     } else if (ships[i].size === 4) {
+//       ships.result.battleship += 1;
+//     }
+//     i++;
+//   }
+//   if (count !== 10) return false;
+//   if (
+//     ships.result.submarine == 4 &&
+//     ships.result.destroyer == 3 &&
+//     ships.result.cruiser == 2 &&
+//     ships.result.battleship == 1
+//     )
+//     return true;
+//     else return false;
+//   };
+//   const explore = (graph, current, visited, ships, i) => {
+//     if (visited.has(String(current))) return false;
+//     visited.add(String(current));
+//     ships[i].add(String(current));
+//     for (neighbor of graph[current]) {
+//       explore(graph, neighbor, visited, ships, i);
+//     }
+//     return true;
+//   };
+  
+//   function makeAdjencyList(field) {
+//     let cells = {};
+//     for (let i = 0; i < field.length; i++) {
+//       for (j = 0; j < field[i].length; j++) {
+//         if (field[i][j] == 1) {
+//           cells[[i, j]] = [];
+//           if (field[i] && field[i][j + 1] == 1) cells[[i, j]].push([i, j + 1]);
+//           if (field[i] && field[i][j - 1] == 1) cells[[i, j]].push([i, j - 1]);
+//           if (field[i + 1] && field[i + 1][j] == 1)
+//           cells[[i, j]].push([i + 1, j]);
+//           if (field[i - 1] && field[i - 1][j] == 1)
+//           cells[[i, j]].push([i - 1, j]);
+//           if (field[i + 1] && field[i + 1][j + 1] == 1)
+//           cells[[i, j]].push([i + 1, j + 1]);
+//           if (field[i - 1] && field[i - 1][j + 1] == 1)
+//           cells[[i, j]].push([i - 1, j + 1]);
+//           if (field[i + 1] && field[i + 1][j - 1] == 1)
+//           cells[[i, j]].push([i + 1, j - 1]);
+//           if (field[i - 1] && field[i - 1][j - 1] == 1)
+//           cells[[i, j]].push([i - 1, j - 1]);
+//         }
+//       }
+//     }
+//     return cells;
+//   }
+//   const checkForm = (set) => {
+//     const arrfromSet = [...set];
+//     const tuples = arrfromSet.map((item) => item.split(","));
+//     let check = [];
+//     if (tuples.length > 2) {
+//       for (let i = 0; i < tuples.length; i++) {
+//         if (tuples[i + 1]) {
+//           let pairString = [];
+//           pairString.push(tuples[i][0] - tuples[i + 1][0]);
+//           pairString.push(tuples[i][1] - tuples[i + 1][1]);
+//           check.push(pairString.join(","));
+//         }
+//       }
+//     }
+//     if (check.length > 0) {
+//       const filteredCheck = check.filter((item, index) => {
+//         if (item === check[index + 1]) {
+//           return true;
+//         } else if (item === check[index - 1]) return true;
+//         else return false;
+//       });
+//       if (check.length !== filteredCheck.length) return false;
+//     }
+//     return true;
+//   };
+  
+  // --- Best Practice : 
+  // function validateBattlefield(field) {
+//   var hit = (row, col) => (row < 0 || col < 0 || row > 9 || col > 9) ? 0 : field[row][col];
+//   for (var ships = [10,0,0,0,0], row = 0; row < 10; row++) {
+//     for (var col = 0; col < 10; col++) {
+//       if ( hit(row,col) ) {
+//         if ( hit(row-1, col-1) || hit(row-1, col+1) ) return false; // Corner is touching
+//         if ( hit(row-1, col  ) && hit(row  , col-1) ) return false; // Side is touching
+//         if ( ( field[row][col] += hit(row-1, col) + hit(row, col-1) ) > 4 ) return false; // Ship is too long
+//         ships[field[row][col]]++; ships[field[row][col] - 1]--;
+//   } } }
+//   return [0,4,3,2,1].every((s,i) => s == ships[i]);
+// }
+  
+  // --- Comment : 
+  // I don't even really understand this code...
+  //          ----           ----           -----           ----            ----            ----            ---- 
+  
+  Help the general decode secret enemy messages.
+  // se deplacer : abdhpF,82QsLirJejtNmzZKgnB3SwTyXG ?.6YIcflxVC5WE94UA1OoD70MkvRuPqH
+// abcde = bhx,z
+const test = "bhx,z";
+let decode = function (w) {
+  const alpha = "abcdefghijklmnopqrstuvwxyz";
+  const depart = "bdfhjlnprtvxzBDFHJLNPRTVXZ";
+  const encryptKey =
+    "abdhpF,82QsLirJejtNmzZKgnB3SwTyXG ?.6YIcflxVC5WE94UA1OoD70MkvRuPqH";
+  let result = w
+    .split("")
+    .map((item, index) => encryptKey[encryptKey.indexOf(item) - index - 1]);
+
+    for (i=0;)
+  return result.join("");
 };
-const explore = (graph, current, visited, ships, i) => {
-  if (visited.has(String(current))) return false;
-  visited.add(String(current));
-  ships[i].add(String(current));
-  for (neighbor of graph[current]) {
-    explore(graph, neighbor, visited, ships, i);
-  }
-  return true;
-};
 
-function makeAdjencyList(field) {
-  let cells = {};
-  for (let i = 0; i < field.length; i++) {
-    for (j = 0; j < field[i].length; j++) {
-      if (field[i][j] == 1) {
-        cells[[i, j]] = [];
-        if (field[i] && field[i][j + 1] == 1) cells[[i, j]].push([i, j + 1]);
-        if (field[i] && field[i][j - 1] == 1) cells[[i, j]].push([i, j - 1]);
-        if (field[i + 1] && field[i + 1][j] == 1)
-          cells[[i, j]].push([i + 1, j]);
-        if (field[i - 1] && field[i - 1][j] == 1)
-          cells[[i, j]].push([i - 1, j]);
-        if (field[i + 1] && field[i + 1][j + 1] == 1)
-          cells[[i, j]].push([i + 1, j + 1]);
-        if (field[i - 1] && field[i - 1][j + 1] == 1)
-          cells[[i, j]].push([i - 1, j + 1]);
-        if (field[i + 1] && field[i + 1][j - 1] == 1)
-          cells[[i, j]].push([i + 1, j - 1]);
-        if (field[i - 1] && field[i - 1][j - 1] == 1)
-          cells[[i, j]].push([i - 1, j - 1]);
-      }
-    }
-  }
-  return cells;
-}
-const checkForm = (set) => {
-  const arrfromSet = [...set];
-  const tuples = arrfromSet.map((item) => item.split(","));
-  let check = [];
-  if (tuples.length > 2) {
-    for (let i = 0; i < tuples.length; i++) {
-      if (tuples[i + 1]) {
-        let pairString = [];
-        pairString.push(tuples[i][0] - tuples[i + 1][0]);
-        pairString.push(tuples[i][1] - tuples[i + 1][1]);
-        check.push(pairString.join(","));
-      }
-    }
-  }
-  if (check.length > 0) {
-    const filteredCheck = check.filter((item, index) => {
-      if (item === check[index + 1]) {
-        return true;
-      } else if (item === check[index - 1]) return true;
-      else return false;
-    });
-    if (check.length !== filteredCheck.length) return false;
-  }
-  return true;
-};
-
-// const test = [
-//   [0, 0, 1, 1, 0, 0],
-//   [0, 0, 1, 1, 0, 0],
-// ];
-console.log(
-  validateBattlefield([
-    [1, 0, 0, 0, 0, 1, 1, 0, 0, 0],
-    [1, 0, 0, 0, 0, 0, 0, 0, 1, 0],
-    [1, 0, 0, 0, 1, 1, 1, 0, 1, 0],
-    [1, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-    [0, 0, 0, 0, 0, 0, 0, 0, 1, 0],
-    [0, 0, 0, 0, 1, 1, 1, 0, 0, 0],
-    [0, 0, 0, 0, 0, 0, 0, 0, 1, 0],
-    [0, 1, 0, 1, 0, 0, 0, 0, 0, 0],
-    [0, 1, 0, 0, 0, 0, 0, 1, 0, 0],
-    [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-  ])
-);
+console.log(decode("yFNYhdmEdViBbxc40,ROYNxwfwvjg5CHUYUhiIkp2CMIvZ.1qPz"));
+"The quick brown fox jumped over the lazy developer"
