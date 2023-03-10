@@ -1132,14 +1132,11 @@
 
 //          ----           ----           -----           ----            ----            ----            ----
 
-
-
 // --- 8 March 23 ---
-// --- Instruction : 
+// --- Instruction :
 // Write a method that takes a field for well-known board game "Battleship" as an argument and returns true if it has a valid disposition of ships, false otherwise. Argument is guaranteed to be 10*10 two-dimension array. Elements in the array are numbers, 0 if the cell is free and 1 if occupied by ship.
 
 // Battleship (also Battleships or Sea Battle) is a guessing game for two players. Each player has a 10x10 grid containing several "ships" and objective is to destroy enemy's forces by targetting individual cells on his field. The ship occupies one or more cells in the grid. Size and number of ships may differ from version to version. In this kata we will use Soviet/Russian version of the game.
-
 
 // Before the game begins, players set up the board and place the ships accordingly to the following rules:
 // There must be single battleship (size of 4 cells), 2 cruisers (size 3), 3 destroyers (size 2) and 4 submarines (size 1). Any additional ships are not allowed, as well as missing ships.
@@ -1147,8 +1144,8 @@
 
 // The ship cannot overlap or be in contact with any other ship, neither by edge nor by corner.
 
-// --- My Solution : 
-// 
+// --- My Solution :
+//
 // let validateBattlefield = (field) => {
 //   const adjencylist = makeAdjencyList(field);
 //   let count = 0;
@@ -1163,15 +1160,15 @@
 //   let i = 1;
 //   for (let node in adjencylist) {
 //     ships[i] = new Set();
-    
+
 //     let shipCount = explore(adjencylist, node, visited, ships, i);
 //     if (shipCount === true) {
 //       count += 1;
 //     }
-    
+
 //     const check = checkForm(ships[i]);
 //     if (check == false) return false;
-    
+
 //     if (ships[i].size === 1) {
 //       ships.result.submarine += 1;
 //     } else if (ships[i].size === 2) {
@@ -1202,7 +1199,7 @@
 //     }
 //     return true;
 //   };
-  
+
 //   function makeAdjencyList(field) {
 //     let cells = {};
 //     for (let i = 0; i < field.length; i++) {
@@ -1253,9 +1250,9 @@
 //     }
 //     return true;
 //   };
-  
-  // --- Best Practice : 
-  // function validateBattlefield(field) {
+
+// --- Best Practice :
+// function validateBattlefield(field) {
 //   var hit = (row, col) => (row < 0 || col < 0 || row > 9 || col > 9) ? 0 : field[row][col];
 //   for (var ships = [10,0,0,0,0], row = 0; row < 10; row++) {
 //     for (var col = 0; col < 10; col++) {
@@ -1267,13 +1264,13 @@
 //   } } }
 //   return [0,4,3,2,1].every((s,i) => s == ships[i]);
 // }
-  
-  // --- Comment : 
-  // I don't even really understand this code...
-  //          ----           ----           -----           ----            ----            ----            ---- 
-  
-  Help the general decode secret enemy messages.
-  // se deplacer : abdhpF,82QsLirJejtNmzZKgnB3SwTyXG ?.6YIcflxVC5WE94UA1OoD70MkvRuPqH
+
+// --- Comment :
+// I don't even really understand this code...
+//          ----           ----           -----           ----            ----            ----            ----
+
+// Help the general decode secret enemy messages.
+// se deplacer : abdhpF,82QsLirJejtNmzZKgnB3SwTyXG ?.6YIcflxVC5WE94UA1OoD70MkvRuPqH
 // abcde = bhx,z
 const test = "bhx,z";
 let decode = function (w) {
@@ -1281,13 +1278,28 @@ let decode = function (w) {
   const depart = "bdfhjlnprtvxzBDFHJLNPRTVXZ";
   const encryptKey =
     "abdhpF,82QsLirJejtNmzZKgnB3SwTyXG ?.6YIcflxVC5WE94UA1OoD70MkvRuPqH";
-  let result = w
-    .split("")
-    .map((item, index) => encryptKey[encryptKey.indexOf(item) - index - 1]);
+  console.log(encryptKey.length);
 
-    for (i=0;)
+  let letters = w.split("");
+
+  let result = [];
+  for (i = 0; i < letters.length; i++) {
+    let letter = "";
+    let char = "!@#$%^&*()_+-";
+    console.log(char.includes("-"));
+    let index = encryptKey.indexOf(letters[i]) - i - 1;
+    if (char.includes(letters[i])) {
+      result.push(letters[i]);
+    } else if (index < 0) {
+      letter = encryptKey[encryptKey.length + index];
+    } else if (index > 66) {
+      letter = encryptKey[index - encryptKey.length];
+    } else letter = encryptKey[index];
+    console.log(letter);
+    result.push(letter);
+  }
   return result.join("");
 };
 
-console.log(decode("yFNYhdmEdViBbxc40,ROYNxwfwvjg5CHUYUhiIkp2CMIvZ.1qPz"));
-"The quick brown fox jumped over the lazy developer"
+console.log(decode("zJF-CZXBFglEWVNXUR?CQWg0YUCVxhW6UCdQBu7fOaMW"));
+("midRcentury. The Venona intercepts contained");
