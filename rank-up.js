@@ -1269,37 +1269,76 @@
 // I don't even really understand this code...
 //          ----           ----           -----           ----            ----            ----            ----
 
-// Help the general decode secret enemy messages.
-// se deplacer : abdhpF,82QsLirJejtNmzZKgnB3SwTyXG ?.6YIcflxVC5WE94UA1OoD70MkvRuPqH
-// abcde = bhx,z
-const test = "bhx,z";
-let decode = function (w) {
-  const alpha = "abcdefghijklmnopqrstuvwxyz";
-  const depart = "bdfhjlnprtvxzBDFHJLNPRTVXZ";
-  const encryptKey =
-    "abdhpF,82QsLirJejtNmzZKgnB3SwTyXG ?.6YIcflxVC5WE94UA1OoD70MkvRuPqH";
-  console.log(encryptKey.length);
+// --- DATE ---
+// --- Instruction :
+// General Patron is faced with a problem , his intelligence has intercepted some secret messages from the enemy but they are all encrypted. Those messages are crucial to getting the jump on the enemy and winning the war. Luckily intelligence also captured an encoding device as well. However even the smartest programmers weren't able to crack it though. So the general is asking you , his most odd but brilliant programmer.
 
-  let letters = w.split("");
+// You can call the encoder like this.
 
-  let result = [];
-  for (i = 0; i < letters.length; i++) {
-    let letter = "";
-    let char = "!@#$%^&*()_+-";
-    console.log(char.includes("-"));
-    let index = encryptKey.indexOf(letters[i]) - i - 1;
-    if (char.includes(letters[i])) {
-      result.push(letters[i]);
-    } else if (index < 0) {
-      letter = encryptKey[encryptKey.length + index];
-    } else if (index > 66) {
-      letter = encryptKey[index - encryptKey.length];
-    } else letter = encryptKey[index];
-    console.log(letter);
-    result.push(letter);
-  }
-  return result.join("");
+// console.log (device.encode ('What the hell')) ;
+// Our cryptoanalysts kept poking at it and found some interesting patterns.
+// --- My Solution :
+//
+
+// device.decode = function (w) {
+//   const encryptKey =
+//     "abdhpF,82QsLirJejtNmzZKgnB3SwTyXG ?.6YIcflxVC5WE94UA1OoD70MkvRuPqH";
+
+//   let letters = w.split("");
+
+//   let result = [];
+//   for (i = 0; i < letters.length; i++) {
+//     let letter = "";
+//     let char = "!@#$%^&*()_+-";
+//     let index = encryptKey.indexOf(letters[i]) - i - 1;
+//     if (char.includes(letters[i])) {
+//       result.push(letters[i]);
+//     } else if (index < 0) {
+//       letter = encryptKey[encryptKey.length + index];
+//     } else if (index > 66) {
+//       letter = encryptKey[index - encryptKey.length];
+//     } else letter = encryptKey[index];
+//     result.push(letter);
+//   }
+//   return result.join("");
+// };
+
+// --- Best Practice :
+// device.decode = function (w) {
+//   let key = 'abdhpF,82QsLirJejtNmzZKgnB3SwTyXG ?.6YIcflxVC5WE94UA1OoD70MkvRuPqH',
+//   len = key.length,
+//   pos = null;
+
+// w = w.split('').map(function(symbol, idx) {
+// pos = key.indexOf(symbol);
+// return pos === -1 ? symbol : key.substr(pos - idx - 1, 1);
+// }).join('');
+
+// return w ;
+// }
+
+// --- Comment :
+// Loop + chained if are not best practice !
+//          ----           ----           -----           ----            ----            ----            ----
+const calc = function (expression) {
+  const arrayOfExp = expression.split("").filter((item) => item !== " ");
+  const parenthesis = arrayOfExp
+    .map((item, index) => (item == "(" || item == ")" ? index : ""))
+    .filter((item) => item !== "");
+  const opération = [];
+  // for (i = 0; i < parenthesis.length / 2; i++) {
+  //   console.log(parenthesis[parenthesis.length / 2]);
+  //   opération.push(
+  //     arrayOfExp.splice(
+  //       parenthesis[parenthesis.length / 2 - 1] + 1,
+  //       parenthesis[parenthesis.length / 2] -
+  //         parenthesis[parenthesis.length / 2 - 1] -
+  //         1
+  //     )
+  //   );
+  // }
+  console.log(parenthesis);
 };
 
-console.log(decode("zJF-CZXBFglEWVNXUR?CQWg0YUCVxhW6UCdQBu7fOaMW"));
-("midRcentury. The Venona intercepts contained");
+//  ['2 / (2 + 3) * 4.33 - -6', 7.732]
+calc("2 / (2 + 3) * (4.33 - -6)");
