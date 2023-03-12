@@ -1320,6 +1320,8 @@
 // --- Comment :
 // Loop + chained if are not best practice !
 //          ----           ----           -----           ----            ----            ----            ----
+Simpler Interactive interpreter (or REPL)
+
 const calc = function (expression) {
   const arrayOfExp = expression.split("").filter((item) => item !== " ");
   const parenthesis = arrayOfExp
