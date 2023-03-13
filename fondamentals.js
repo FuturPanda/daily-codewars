@@ -478,3 +478,36 @@
 // Second option more DRY.
 // Best practice : the nature of the iterable mean you can spread it... nice i missed that.
 //          ----           ----           -----           ----            ----            ----            ----
+
+function findEvenIndex(arr, acc = 0) {
+  const right = arr
+    .filter((item, index) => index > acc)
+    .reduce((a, b) => a + b);
+  const left = arr.filter((item, index) => index < acc).reduce((a, b) => a + b);
+  if ((acc == 0 && right == 0) || arr.length == 1) return 0;
+  else if (acc == arr.length - 1) return left == 0 ? acc : -1;
+  else if (acc > 0 && left == right) return acc;
+  else return findEvenIndex(arr, acc + 1);
+}
+
+function findEvenIndex(arr, acc = 0) {
+  if (
+    (acc == 0 &&
+      arr.filter((item, index) => index > acc).reduce((a, b) => a + b) == 0) ||
+    arr.length == 1
+  )
+    return 0;
+  else if (acc == arr.length - 1)
+    return arr.filter((item, index) => index < acc).reduce((a, b) => a + b) == 0
+      ? acc
+      : -1;
+  else if (
+    acc > 0 &&
+    arr.filter((item, index) => index < acc).reduce((a, b) => a + b) ==
+      arr.filter((item, index) => index > acc).reduce((a, b) => a + b)
+  )
+    return acc;
+  else return findEvenIndex(arr, acc + 1);
+}
+
+console.log(findEvenIndex([10, -80, 10, 10, 15, 35, 20]));
