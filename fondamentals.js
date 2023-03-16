@@ -515,15 +515,21 @@
 // Calculate BMI -- try no if statement
 class Bmi {
   constructor(weight, height) {
-this.weight = weight
-this.height = height
-   this.BMI = this.weight/(this.height*this.height)
-    this.seuil = [18.5, 25, 30]
-    this.desc = ["Underweight", "Normal", "Overweight", "Obese"]
-}
+    this.weight = weight;
+    this.height = height;
+    this.BMI = this.weight / (this.height * this.height);
+    this.seuil = [18.5, 25, 30];
+    this.desc = ["Underweight", "Normal", "Overweight", "Obese"];
+  }
 }
 
 function bmi(weight, height) {
-const thisBMI = new Bmi(weight, height)
-return thisBMI.BMI > thisBMI.seuil.splice(-1) ? thisBMI.desc.splice(-1) : thisBMI.seuil.map((item, index ) => thisBMI.BMI < item ?  ) ;
+  const BMI = weight / (height * height);
+  const seuil = [18.5, 25, 30];
+  const desc = ["Underweight", "Normal", "Overweight"];
+  if (BMI > 30) return "Obese";
+  for (i = 0; i < seuil.length; i++) {
+    if (BMI <= seuil[i]) return desc[i];
+  }
 }
+console.log(bmi(80, 1.8));
