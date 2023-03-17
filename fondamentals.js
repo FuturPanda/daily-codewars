@@ -479,57 +479,73 @@
 // Best practice : the nature of the iterable mean you can spread it... nice i missed that.
 //          ----           ----           -----           ----            ----            ----            ----
 
-// function findEvenIndex(arr, acc = 0) {
-//   const right = arr
-//     .filter((item, index) => index > acc)
-//     .reduce((a, b) => a + b);
-//   const left = arr.filter((item, index) => index < acc).reduce((a, b) => a + b);
-//   if ((acc == 0 && right == 0) || arr.length == 1) return 0;
-//   else if (acc == arr.length - 1) return left == 0 ? acc : -1;
-//   else if (acc > 0 && left == right) return acc;
-//   else return findEvenIndex(arr, acc + 1);
+// --- 16 March ---
+// --- Instruction :
+// Write function bmi that calculates body mass index (bmi = weight / height2).
+
+// if bmi <= 18.5 return "Underweight"
+
+// if bmi <= 25.0 return "Normal"
+
+// if bmi <= 30.0 return "Overweight"
+
+// if bmi > 30 return "Obese"
+
+// --- My Solution :
+
+// function bmi(weight, height) {
+//   const BMI = weight / (height * height);
+//   const seuil = [18.5, 25, 30];
+//   const desc = ["Underweight", "Normal", "Overweight"];
+//   if (BMI > 30) return "Obese";
+//   for (i = 0; i < seuil.length; i++) {
+//     if (BMI <= seuil[i]) return desc[i];
+//   }
 // }
+//
 
-// function findEvenIndex(arr, acc = 0) {
-//   if (
-//     (acc == 0 &&
-//       arr.filter((item, index) => index > acc).reduce((a, b) => a + b) == 0) ||
-//     arr.length == 1
-//   )
-//     return 0;
-//   else if (acc == arr.length - 1)
-//     return arr.filter((item, index) => index < acc).reduce((a, b) => a + b) == 0
-//       ? acc
-//       : -1;
-//   else if (
-//     acc > 0 &&
-//     arr.filter((item, index) => index < acc).reduce((a, b) => a + b) ==
-//       arr.filter((item, index) => index > acc).reduce((a, b) => a + b)
-//   )
-//     return acc;
-//   else return findEvenIndex(arr, acc + 1);
-// }
+// --- Best Practice :
+//
 
-// console.log(findEvenIndex([10, -80, 10, 10, 15, 35, 20]));
+// const bmi = (w, h, bmi = w/h/h) =>  bmi <= 18.5 ? "Underweight" :
+//                                     bmi <= 25 ? "Normal" :
+//                                     bmi <= 30 ? "Overweight" : "Obese";
 
-// Calculate BMI -- try no if statement
-class Bmi {
-  constructor(weight, height) {
-    this.weight = weight;
-    this.height = height;
-    this.BMI = this.weight / (this.height * this.height);
-    this.seuil = [18.5, 25, 30];
-    this.desc = ["Underweight", "Normal", "Overweight", "Obese"];
-  }
+// --- Comment :
+// I didn't know we could use nested ternary operator.
+
+//          ----           ----           -----           ----            ----            ----            ----
+
+function findEvenIndex(arr, acc = 0) {
+  const right = arr
+    .filter((item, index) => index > acc)
+    .reduce((a, b) => a + b);
+  const left = arr.filter((item, index) => index < acc).reduce((a, b) => a + b);
+  if ((acc == 0 && right == 0) || arr.length == 1) return 0;
+  else if (acc == arr.length - 1) return left == 0 ? acc : -1;
+  else if (acc > 0 && left == right) return acc;
+  else return findEvenIndex(arr, acc + 1);
 }
 
-function bmi(weight, height) {
-  const BMI = weight / (height * height);
-  const seuil = [18.5, 25, 30];
-  const desc = ["Underweight", "Normal", "Overweight"];
-  if (BMI > 30) return "Obese";
-  for (i = 0; i < seuil.length; i++) {
-    if (BMI <= seuil[i]) return desc[i];
-  }
+function findEvenIndex(arr, acc = 0) {
+  if (
+    (acc == 0 &&
+      arr.filter((item, index) => index > acc).reduce((a, b) => a + b) == 0) ||
+    arr.length == 1
+  )
+    return 0;
+  else if (acc == arr.length - 1)
+    return arr.filter((item, index) => index < acc).reduce((a, b) => a + b) == 0
+      ? acc
+      : -1;
+  else if (
+    acc > 0 &&
+    arr.filter((item, index) => index < acc).reduce((a, b) => a + b) ==
+      arr.filter((item, index) => index > acc).reduce((a, b) => a + b)
+  )
+    return acc;
+  else return findEvenIndex(arr, acc + 1);
 }
-console.log(bmi(80, 1.8));
+
+console.log(findEvenIndex([10, -80, 10, 10, 15, 35, 20]));
+console.log(findEvenIndex([0, 1, 2, 3, 4, 5]));
