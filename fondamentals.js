@@ -550,16 +550,101 @@
 // console.log(findEvenIndex([10, -80, 10, 10, 15, 35, 20]));
 // console.log(findEvenIndex([0, 1, 2, 3, 4, 5]));
 
-function XO(str) {
-  const arr = str
-    .toLowerCase()
-    .split("")
-    .filter((item) => item == "x" || item == "o");
-  console.log(arr);
-  if (arr.length == 0) return true;
-  return arr.filter((item) => item == "o").length ==
-    arr.filter((item) => item == "x").length
-    ? true
-    : false;
-}
-console.log(XO("xxoo"));
+// --- 18 March  ---
+// --- Instruction :
+// Check to see if a string has the same amount of 'x's and 'o's. The method must return a boolean and be case insensitive. The string can contain any char.
+
+// Examples input/output:
+
+// XO("ooxx") => true
+// XO("xooxx") => false
+// XO("ooxXm") => true
+// XO("zpzpzpp") => true // when no 'x' and 'o' is present should return true
+// XO("zzoo") => false
+// --- My Solution :
+
+// function XO(str) {
+//   const arr = str
+//     .toLowerCase()
+//     .split("")
+//   return arr.filter((item) => item == "o").length ==
+//     arr.filter((item) => item == "x").length
+//     ? true
+//     : false;
+// }
+//
+
+// --- Best Practice :
+// const XO = str => {
+//   str = str.toLowerCase().split('');
+//   return str.filter(x => x === 'x').length === str.filter(x => x === 'o').length;
+// }
+
+// --- Comment :
+// always forget that an equality return true or false.
+
+//          ----           ----           -----           ----            ----            ----            ----
+
+// --- 19 March ---
+
+// --- Instruction :
+// In a factory a printer prints labels for boxes. For one kind of boxes the printer has to use colors which, for the sake of simplicity, are named with letters from a to m.
+
+// The colors used by the printer are recorded in a control string. For example a "good" control string would be aaabbbbhaijjjm meaning that the printer used three times color a, four times color b, one time color h then one time color a...
+
+// Sometimes there are problems: lack of colors, technical malfunction and a "bad" control string is produced e.g. aaaxbbbbyyhwawiwjjjwwm with letters not from a to m.
+
+// You have to write a function printer_error which given a string will return the error rate of the printer as a string representing a rational whose numerator is the number of errors and the denominator the length of the control string. Don't reduce this fraction to a simpler expression.
+
+// The string has a length greater or equal to one and contains only letters from ato z.
+
+// Examples:
+// s="aaabbbbhaijjjm"
+// printer_error(s) => "0/14"
+
+// s="aaaxbbbbyyhwawiwjjjwwm"
+// printer_error(s) => "8/22"
+
+// --- My Solution :
+// function printerError(s) {
+//   const good = "abcdefghijklm"
+//   const errors = s.split('').filter(item => !good.includes(item) )
+//   return `${errors.length}/${s.length}`
+// }
+
+// --- Best Practice :
+//
+
+// --- Comment :
+// No best practices. Best is regex.
+//          ----           ----           -----           ----            ----            ----            ----
+
+// Binomial Expansion
+// The purpose of this kata is to write a program that can do some algebra.
+
+// Write a function expand that takes in an expression with a single, one character variable, and expands it. The expression is in the form (ax+b)^n where a and b are integers which may be positive or negative, x is any single character variable, and n is a natural number. If a = 1, no coefficient will be placed in front of the variable. If a = -1, a "-" will be placed in front of the variable.
+
+// The expanded form should be returned as a string in the form ax^b+cx^d+ex^f... where a, c, and e are the coefficients of the term, x is the original one character variable that was passed in the original expression and b, d, and f, are the powers that x is being raised to in each term and are in decreasing order.
+
+// If the coefficient of a term is zero, the term should not be included. If the coefficient of a term is one, the coefficient should not be included. If the coefficient of a term is -1, only the "-" should be included. If the power of the term is 0, only the coefficient should be included. If the power of the term is 1, the caret and power should be excluded.
+
+// it("Should correctly expand binomials where a=1 and b is positive", function() {
+//   assert.strictEqual(expand("(x+1)^0"),"1");
+//   assert.strictEqual(expand("(x+1)^1"),"x+1");
+//   assert.strictEqual(expand("(x+1)^2"),"x^2+2x+1");
+// });
+// it("Should correctly expand binomials where a=1 and b is negative", function() {
+//   assert.strictEqual(expand("(x-1)^0"),"1");
+//   assert.strictEqual(expand("(x-1)^1"),"x-1");
+//   assert.strictEqual(expand("(x-1)^2"),"x^2-2x+1");
+// });
+// it("Should correctly expand binomials where a is positive.", function() {
+//   assert.strictEqual(expand("(5m+3)^4"),"625m^4+1500m^3+1350m^2+540m+81");
+//   assert.strictEqual(expand("(2x-3)^3"),"8x^3-36x^2+54x-27");
+//   assert.strictEqual(expand("(7x-7)^0"),"1");
+// });
+// it("Should correctly expand binomials where a is negative.", function() {
+//   assert.strictEqual(expand("(-5m+3)^4"),"625m^4-1500m^3+1350m^2-540m+81");
+//   assert.strictEqual(expand("(-2k-3)^3"),"-8k^3-36k^2-54k-27");
+//   assert.strictEqual(expand("(-7x-7)^0"),"1");
+// });
