@@ -1320,27 +1320,57 @@
 // --- Comment :
 // Loop + chained if are not best practice !
 //          ----           ----           -----           ----            ----            ----            ----
-Simpler Interactive interpreter (or REPL)
 
-const calc = function (expression) {
-  const arrayOfExp = expression.split("").filter((item) => item !== " ");
-  const parenthesis = arrayOfExp
-    .map((item, index) => (item == "(" || item == ")" ? index : ""))
-    .filter((item) => item !== "");
-  const opération = [];
-  // for (i = 0; i < parenthesis.length / 2; i++) {
-  //   console.log(parenthesis[parenthesis.length / 2]);
-  //   opération.push(
-  //     arrayOfExp.splice(
-  //       parenthesis[parenthesis.length / 2 - 1] + 1,
-  //       parenthesis[parenthesis.length / 2] -
-  //         parenthesis[parenthesis.length / 2 - 1] -
-  //         1
-  //     )
-  //   );
-  // }
-  console.log(parenthesis);
+// Binomial Expansion
+// The purpose of this kata is to write a program that can do some algebra.
+
+// Write a function expand that takes in an expression with a single, one character variable, and expands it.
+// The expression is in the form (ax+b)^n where a and b are integers which may be positive or negative,
+// x is any single character variable, and n is a natural number. If a = 1, no coefficient will be placed in front
+//  of the variable. If a = -1, a "-" will be placed in front of the variable.
+
+// The expanded form should be returned as a string in the form ax^b+cx^d+ex^f... where a, c, and e are the coefficients
+//  of the term, x is the original one character variable that was passed in the original expression and b, d, and f, are the powers
+//   that x is being raised to in each term and are in decreasing order.
+
+// If the coefficient of a term is zero, the term should not be included. If the coefficient of a term is one,
+// the coefficient should not be included. If the coefficient of a term is -1, only the "-" should be included.
+// If the power of the term is 0, only the coefficient should be included. If the power of the term is 1, the
+// caret and power should be excluded.
+
+const expand = (equationString) => {
+  const array = equationString.split("^");
+  const expression = array[0]
+    .split("")
+    .filter((item) => item !== "(" && item !== ")");
+  const coefficient = array[1];
+  const result = [];
+  console.log(expression);
+  console.log(coefficient);
+  for (i = 0; i < coefficient; i++) {
+    result.push();
+  }
 };
+console.log(Math.pow(2, 3));
+expand("(x-1)^2");
 
-//  ['2 / (2 + 3) * 4.33 - -6', 7.732]
-calc("2 / (2 + 3) * (4.33 - -6)");
+// it("Should correctly expand binomials where a=1 and b is positive", function() {
+//   assert.strictEqual(expand("(x+1)^0"),"1");
+//   assert.strictEqual(expand("(x+1)^1"),"x+1");
+//   assert.strictEqual(expand("(x+1)^2"),"x^2+2x+1");
+// });
+// it("Should correctly expand binomials where a=1 and b is negative", function() {
+//   assert.strictEqual(expand("(x-1)^0"),"1");
+//   assert.strictEqual(expand("(x-1)^1"),"x-1");
+//   assert.strictEqual(expand("(x-1)^2"),"x^2-2x+1");
+// });
+// it("Should correctly expand binomials where a is positive.", function() {
+//   assert.strictEqual(expand("(5m+3)^4"),"625m^4+1500m^3+1350m^2+540m+81");
+//   assert.strictEqual(expand("(2x-3)^3"),"8x^3-36x^2+54x-27");
+//   assert.strictEqual(expand("(7x-7)^0"),"1");
+// });
+// it("Should correctly expand binomials where a is negative.", function() {
+//   assert.strictEqual(expand("(-5m+3)^4"),"625m^4-1500m^3+1350m^2-540m+81");
+//   assert.strictEqual(expand("(-2k-3)^3"),"-8k^3-36k^2-54k-27");
+//   assert.strictEqual(expand("(-7x-7)^0"),"1");
+// });
