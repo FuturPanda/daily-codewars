@@ -80,18 +80,34 @@
 
 # All letters will be lowercase and all inputs will be valid.
 
-def high(x):
-    words = x.split(" ")
-    letters = "abcdefghijklmnopqrstuvwxyz"
-    scores = []
-    for word in words : 
-        score = 0
-        for letter in word : 
-            score += letters.index(letter)
-        scores.append(score)
-    max = [scores[0], 0]
-    for i in range(1, len(scores)):
-        if scores[i] > max[0] : 
-            max = [scores[i], i]
-    return words[max[1]]
+# def high(x):
+#     words = x.split(" ")
+#     letters = "abcdefghijklmnopqrstuvwxyz"
+#     scores = []
+#     for word in words : 
+#         score = 0
+#         for letter in word : 
+#             score += (letters.index(letter)+1)
+#         scores.append(score)
+#     max = [scores[0], 0]
+#     for i in range(1, len(scores)):
+#         if scores[i] > max[0] : 
+#             max = [scores[i], i]
+#     return words[max[1]]
             
+
+
+# --- Best Practice ---
+# def high(x):
+#     words=x.split(' ')
+#     list = []
+#     for i in words:
+#         scores = [sum([ord(char) - 96 for char in i])]
+#         list.append(scores)
+#     return words[list.index(max(list))]
+
+# --- Comments ---
+# Ok découverte de la fonction max() dans une liste. Super simple. 
+
+
+# ---- ---- ----- ---- ---- ---- ----
