@@ -111,3 +111,61 @@
 
 
 # ---- ---- ----- ---- ---- ---- ----
+# --- 3 April ---
+
+# --- Instructions ---
+# An isogram is a word that has no repeating letters, consecutive or non-consecutive. Implement a function that determines whether a string that contains only letters is an isogram. Assume the empty string is an isogram. Ignore letter case.
+
+# Example: (Input --> Output)
+
+# "Dermatoglyphics" --> true "aba" --> false "moOse" --> false (ignore letter case)
+
+# isIsogram "Dermatoglyphics" = true
+# isIsogram "moose" = false
+# isIsogram "aba" = false
+# --- My Solution
+# def is_isogram(string):
+#     for letter in string:
+#         if string.lower().count(letter) > 1 : return False
+#     return True
+# --- Best Practice ---
+# def is_isogram(string):
+#     return len(string) == len(set(string.lower()))
+# --- Comments ---
+#  Set works also in python ! 
+
+
+# ---- ---- ----- ---- ---- ---- ----
+# --- 3 April ---
+
+# --- Instructions ---
+# Given two integers a and b, which can be positive or negative, find the sum of all the integers between and including them and return it. If the two numbers are equal return a or b.
+
+# Note: a and b are not ordered!
+
+# Examples (a, b) --> output (explanation)
+# (1, 0) --> 1 (1 + 0 = 1)
+# (1, 2) --> 3 (1 + 2 = 3)
+# (0, 1) --> 1 (0 + 1 = 1)
+# (1, 1) --> 1 (1 since both are same)
+# (-1, 0) --> -1 (-1 + 0 = -1)
+# (-1, 2) --> 2 (-1 + 0 + 1 + 2 = 2)
+# Your function should only return a number, not the explanation about how you get that number.
+
+
+# --- My Solution
+# def get_sum(a,b):
+#     sort = sorted([a, b])
+#     result = 0 
+#     for i in range(sort[1]-sort[0]+1) : 
+#         result += sort[1]-i
+#     return result
+
+# --- Best Practice ---
+# def get_sum(a,b):
+#     return sum(range(min(a, b), max(a, b) + 1))
+
+# --- Comments ---
+# Totally forget the sum function. le range est interessant aussi 
+
+# ---- ---- ----- ---- ---- ---- ----
