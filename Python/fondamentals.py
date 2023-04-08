@@ -169,18 +169,17 @@
 # Totally forget the sum function. le range est interessant aussi 
 
 # ---- ---- ----- ---- ---- ---- ----
-Make the Deadfish Swim
-Write a simple parser that will parse and run Deadfish.
+# Make the Deadfish Swim
+# Write a simple parser that will parse and run Deadfish.
 
-Deadfish has 4 commands, each 1 character long:
+# Deadfish has 4 commands, each 1 character long:
 
-i increments the value (initially 0)
-d decrements the value
-s squares the value
-o outputs the value into the return array
-Invalid characters should be ignored.
+# i increments the value (initially 0)
+# d decrements the value
+# s squares the value
+# o outputs the value into the return array
+# Invalid characters should be ignored.
 
-parse("iiisdoso")  ==>  [8, 64]
 def parse(data):
     input_commands = [*data]
     current_value = 0
@@ -196,5 +195,12 @@ def parse(data):
     commands = { "i" : add, "d" : dec, "s" : square , "o" : output}
     print(input_commands)
     for command in input_commands :
-        commands[command](current_value)
+        if command == "o" :
+            commands[command](current_value)
+        elif command in commands :
+            current_value = commands[command](current_value)
+        else : 
+            continue
     return result_arr
+
+print(parse("iiisdoso")) # ==>  [8, 64]
