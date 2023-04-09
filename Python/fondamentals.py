@@ -169,6 +169,9 @@
 # Totally forget the sum function. le range est interessant aussi 
 
 # ---- ---- ----- ---- ---- ---- ----
+# --- 31 March ---
+
+# --- Instructions ---
 # Make the Deadfish Swim
 # Write a simple parser that will parse and run Deadfish.
 
@@ -180,27 +183,74 @@
 # o outputs the value into the return array
 # Invalid characters should be ignored.
 
-def parse(data):
-    input_commands = [*data]
-    current_value = 0
-    result_arr = []
-    def add(num) : 
-        return num+1
-    def dec(num) : 
-        return num-1
-    def square(num) :
-        return num*num
-    def output(num) : 
-        result_arr.append(num)
-    commands = { "i" : add, "d" : dec, "s" : square , "o" : output}
-    print(input_commands)
-    for command in input_commands :
-        if command == "o" :
-            commands[command](current_value)
-        elif command in commands :
-            current_value = commands[command](current_value)
-        else : 
-            continue
-    return result_arr
+# --- My Solution
 
-print(parse("iiisdoso")) # ==>  [8, 64]
+
+# def parse(data):
+#     input_commands = [*data]
+#     current_value = 0
+#     result_arr = []
+#     def add(num) : 
+#         return num+1
+#     def dec(num) : 
+#         return num-1
+#     def square(num) :
+#         return num*num
+#     def output(num) : 
+#         result_arr.append(num)
+#     commands = { "i" : add, "d" : dec, "s" : square , "o" : output}
+#     for command in input_commands :
+#         if command == "o" :
+#             commands[command](current_value)
+#         elif command in commands :
+#             current_value = commands[command](current_value)
+#         else : 
+#             continue
+#     return result_arr
+# --- Best Practice ---
+# --- 1 : Elif
+# def parse(data):
+#     value = 0
+#     res=[]
+#     for c in data:
+#         if c=="i": value+=1
+#         elif c=="d": value-=1
+#         elif c=="s": value*=value
+#         elif c=="o": res.append(value)
+#     return res
+
+# --- 2 : Dictionnaire 
+# COMMANDS = {
+#     'i': lambda x: x + 1,
+#     'd': lambda x: x - 1,
+#     's': lambda x: x * x,
+# }
+
+# def parse(data):
+#     result, x = [], 0
+#     for c in data:
+#         if c == 'o':
+#             result.append(x)
+#         elif c in COMMANDS:
+#             x = COMMANDS[c](x)
+#     return result
+
+# --- Comments ---
+# Checker la doc sur "lambda " pour les fonction dans les dict. 
+
+
+# ---- ---- ----- ---- ---- ---- ----
+Simple Pig Latin
+Move the first letter of each word to the end of it, then add "ay" to the end of the word. Leave punctuation marks untouched.
+
+Examples
+pig_it('Pig latin is cool') # igPay atinlay siay oolcay
+pig_it('Hello world !')     # elloHay orldway !
+
+
+def pig_it(text):
+    words = text.split(" ")
+    print(words)
+    for word in words : 
+        
+        print([*word])
