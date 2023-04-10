@@ -240,17 +240,25 @@
 
 
 # ---- ---- ----- ---- ---- ---- ----
-Simple Pig Latin
-Move the first letter of each word to the end of it, then add "ay" to the end of the word. Leave punctuation marks untouched.
+# Simple Pig Latin
+# Move the first letter of each word to the end of it, then add "ay" to the end of the word. Leave punctuation marks untouched.
 
-Examples
-pig_it('Pig latin is cool') # igPay atinlay siay oolcay
-pig_it('Hello world !')     # elloHay orldway !
+# Examples
 
 
 def pig_it(text):
     words = text.split(" ")
-    print(words)
+    ponctuation = "!?."
+    result = []
     for word in words : 
-        
-        print([*word])
+        letters = [*word]
+        if word in ponctuation : 
+            letters.append(letters.pop(0))
+        else :
+            letters.append(letters.pop(0)+"ay")
+        result.append("".join(letters))
+    return(" ".join(result))
+
+# pig_it('Pig latin is cool') # igPay atinlay siay oolcay
+# pig_it('Hello world !')     # elloHay orldway !
+print(pig_it("O tempora o mores !"))
