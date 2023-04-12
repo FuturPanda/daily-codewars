@@ -289,3 +289,45 @@ def pig_it(text):
 
 # ---- ---- ----- ---- ---- ---- ----
 
+# --- 31 March ---
+
+# --- Instructions ---
+# Write a function that takes an integer as input, and returns the number of bits that are equal to one in the binary representation of that number. You can guarantee that input is non-negative.
+
+# Example: The binary representation of 1234 is 10011010010, so the function should return 5 in this case
+
+# --- My Solution
+# def count_bits(n):
+#     binary = f"{n:08b}"
+#     number = 0
+#     for num in binary : 
+#         if num == "1" :
+#             number += 1
+#     return number
+
+# --- Best Practice ---
+# def countBits(n):
+#     return bin(n).count("1")
+
+
+# --- Comments ---
+# Think about the count() method. 
+
+
+# ---- ---- ----- ---- ---- ---- ----
+
+def zeros(n):
+    final_num = 1
+    for i in range(n) : 
+        print(i)
+        final_num = final_num * (i+1)
+    list_num = [*str(final_num)]
+    result = 0 
+    for x in reversed(list_num) :
+        if x == "0" :
+            result += 1
+        else : 
+            return result
+
+
+print(zeros(6))
