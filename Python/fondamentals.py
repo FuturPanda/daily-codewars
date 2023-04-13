@@ -253,18 +253,18 @@
 
 # --- My Solution
 
-def pig_it(text):
-    words = text.split(" ")
-    ponctuation = "!?."
-    result = []
-    for word in words : 
-        letters = [*word]
-        if word in ponctuation : 
-            letters.append(letters.pop(0))
-        else :
-            letters.append(letters.pop(0)+"ay")
-        result.append("".join(letters))
-    return(" ".join(result))
+# def pig_it(text):
+#     words = text.split(" ")
+#     ponctuation = "!?."
+#     result = []
+#     for word in words : 
+#         letters = [*word]
+#         if word in ponctuation : 
+#             letters.append(letters.pop(0))
+#         else :
+#             letters.append(letters.pop(0)+"ay")
+#         result.append("".join(letters))
+#     return(" ".join(result))
 
 # --- Best Practice ---
 # --- 1 : 
@@ -316,18 +316,31 @@ def pig_it(text):
 
 # ---- ---- ----- ---- ---- ---- ----
 
-def zeros(n):
-    final_num = 1
-    for i in range(n) : 
-        print(i)
-        final_num = final_num * (i+1)
-    list_num = [*str(final_num)]
-    result = 0 
-    for x in reversed(list_num) :
-        if x == "0" :
-            result += 1
-        else : 
-            return result
+# def zeros(n):
+#     final_num = 1
+#     for i in range(n) : 
+#         print(i)
+#         final_num = final_num * (i+1)
+#     list_num = [*str(final_num)]
+#     result = 0 
+#     for x in reversed(list_num) :
+#         if x == "0" :
+#             result += 1
+#         else : 
+#             return result
 
 
-print(zeros(6))
+# print(zeros(6))
+
+# -------
+
+def diamond(n):
+    if n % 2 == 0 or n < 0 : 
+        return None
+    else :
+        result_str = []
+        for i in range(n) :
+            print(i)
+        return "*"
+
+diamond(5)
