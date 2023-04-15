@@ -381,4 +381,15 @@
 
 
 # ---- ---- ----- ---- ---- ---- ----
+def productFib(prod):
+    fib = [0, 1]
+    while fib[0]*fib[1] <= prod :
+        if fib[0]*fib[1] == prod : return [fib[0], fib[1], True]
+        current_num = fib[0] + fib[1]
+        fib = fib[1:]
+        fib.append(current_num)
+    return [fib[0], fib[1], False]
 
+
+print(productFib(4895)) #, [55, 89, True]
+print(productFib(5895)) #, [89, 144, False]
