@@ -430,6 +430,12 @@
 
 # ---- ---- ----- ---- ---- ---- ----
 
+
+
+# --- 31 March ---
+
+# --- Instructions ---
+
 # Mexican wave 
 
 # The wave (known as the Mexican wave in the English-speaking world outside North America) is an example of metachronal rhythm achieved in a packed stadium when successive groups of spectators briefly stand, yell, and raise their arms. Immediately upon stretching to full height, the spectator returns to the usual seated position.
@@ -442,10 +448,23 @@
 
 #  2.  If the character in the string is whitespace then pass over it as if it was an empty seat
 # Example
-def wave(str) : 
-    result = []
-    for i in str : 
-        word = [*str]
-        
 
-wave("hello") => ["Hello", "hEllo", "heLlo", "helLo", "hellO"]
+# wave("hello") #=> ["Hello", "hEllo", "heLlo", "helLo", "hellO"]
+# --- My Solution
+# def wave(str) : 
+#     result = []
+#     for i in range(len(str)) : 
+#         word = [*str]
+#         if word[i] == " " : 
+#             continue
+#         word[i] = word[i].upper()
+#         result.append("".join(word))
+#     return result
+
+
+# --- Best Practice ---
+
+# --- Comments ---
+
+
+# ---- ---- ----- ---- ---- ---- ----
