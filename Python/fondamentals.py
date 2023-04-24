@@ -1,8 +1,8 @@
 # --- 31 March ---
 # def sum_array(a):
-#     if len(a) == 0 : 
+#     if len(a) == 0 :
 #         return 0
-#     sum = 0 
+#     sum = 0
 #     for num in a :
 #         sum += num
 #     return sum
@@ -11,10 +11,10 @@
 # def sum_array(a):
 #   return sum(a)
 
-# --- Comments --- 
-#       ----           ----           -----           ----            ----            ----            ---- 
+# --- Comments ---
+#       ----           ----           -----           ----            ----            ----            ----
 # --- 31 March ---
-# --- Instructions --- 
+# --- Instructions ---
 # Complete the solution so that it returns true if the first argument(string) passed in ends with the 2nd argument (also a string).
 
 # Examples:
@@ -28,8 +28,8 @@
 # def solution(string, ending):
 #     return string.endswith(ending)
 
-# --- Comments --- 
-#       ----           ----           -----           ----            ----            ----            ---- 
+# --- Comments ---
+#       ----           ----           -----           ----            ----            ----            ----
 
 # --- 31 March ---
 
@@ -53,10 +53,10 @@
 # --- My Solution
 # def narcissistic( value ):
 #     narcissistic_num = 0
-#     for num in str(value) : 
+#     for num in str(value) :
 #        narcissistic_num += (int(num) ** len(str(value)))
 #     return narcissistic_num == value
-    
+
 # --- Best Practice ---
 # def narcissistic(value):
 #     return value == sum(int(x) ** len(str(value)) for x in str(value))
@@ -84,17 +84,16 @@
 #     words = x.split(" ")
 #     letters = "abcdefghijklmnopqrstuvwxyz"
 #     scores = []
-#     for word in words : 
+#     for word in words :
 #         score = 0
-#         for letter in word : 
+#         for letter in word :
 #             score += (letters.index(letter)+1)
 #         scores.append(score)
 #     max = [scores[0], 0]
 #     for i in range(1, len(scores)):
-#         if scores[i] > max[0] : 
+#         if scores[i] > max[0] :
 #             max = [scores[i], i]
 #     return words[max[1]]
-            
 
 
 # --- Best Practice ---
@@ -107,7 +106,7 @@
 #     return words[list.index(max(list))]
 
 # --- Comments ---
-# Ok découverte de la fonction max() dans une liste. Super simple. 
+# Ok découverte de la fonction max() dans une liste. Super simple.
 
 
 # ---- ---- ----- ---- ---- ---- ----
@@ -132,7 +131,7 @@
 # def is_isogram(string):
 #     return len(string) == len(set(string.lower()))
 # --- Comments ---
-#  Set works also in python ! 
+#  Set works also in python !
 
 
 # ---- ---- ----- ---- ---- ---- ----
@@ -156,8 +155,8 @@
 # --- My Solution
 # def get_sum(a,b):
 #     sort = sorted([a, b])
-#     result = 0 
-#     for i in range(sort[1]-sort[0]+1) : 
+#     result = 0
+#     for i in range(sort[1]-sort[0]+1) :
 #         result += sort[1]-i
 #     return result
 
@@ -166,7 +165,7 @@
 #     return sum(range(min(a, b), max(a, b) + 1))
 
 # --- Comments ---
-# Totally forget the sum function. le range est interessant aussi 
+# Totally forget the sum function. le range est interessant aussi
 
 # ---- ---- ----- ---- ---- ---- ----
 # --- 31 March ---
@@ -190,13 +189,13 @@
 #     input_commands = [*data]
 #     current_value = 0
 #     result_arr = []
-#     def add(num) : 
+#     def add(num) :
 #         return num+1
-#     def dec(num) : 
+#     def dec(num) :
 #         return num-1
 #     def square(num) :
 #         return num*num
-#     def output(num) : 
+#     def output(num) :
 #         result_arr.append(num)
 #     commands = { "i" : add, "d" : dec, "s" : square , "o" : output}
 #     for command in input_commands :
@@ -204,7 +203,7 @@
 #             commands[command](current_value)
 #         elif command in commands :
 #             current_value = commands[command](current_value)
-#         else : 
+#         else :
 #             continue
 #     return result_arr
 # --- Best Practice ---
@@ -219,7 +218,7 @@
 #         elif c=="o": res.append(value)
 #     return res
 
-# --- 2 : Dictionnaire 
+# --- 2 : Dictionnaire
 # COMMANDS = {
 #     'i': lambda x: x + 1,
 #     'd': lambda x: x - 1,
@@ -236,7 +235,7 @@
 #     return result
 
 # --- Comments ---
-# Checker la doc sur "lambda " pour les fonction dans les dict. 
+# Checker la doc sur "lambda " pour les fonction dans les dict.
 
 
 # ---- ---- ----- ---- ---- ---- ----
@@ -246,7 +245,7 @@
 
 # --- Instructions ---
 # Simple Pig Latin
-# Move the first letter of each word to the end of it, then add "ay" to 
+# Move the first letter of each word to the end of it, then add "ay" to
 # the end of the word. Leave punctuation marks untouched.
 # pig_it('Pig latin is cool') # igPay atinlay siay oolcay
 # pig_it('Hello world !')     # elloHay orldway !
@@ -257,9 +256,9 @@
 #     words = text.split(" ")
 #     ponctuation = "!?."
 #     result = []
-#     for word in words : 
+#     for word in words :
 #         letters = [*word]
-#         if word in ponctuation : 
+#         if word in ponctuation :
 #             letters.append(letters.pop(0))
 #         else :
 #             letters.append(letters.pop(0)+"ay")
@@ -267,16 +266,16 @@
 #     return(" ".join(result))
 
 # --- Best Practice ---
-# --- 1 : 
+# --- 1 :
 # def pig_it(text):
 #     res = []
-    
+
 #     for i in text.split():
 #         if i.isalpha():
 #             res.append(i[1:]+i[0]+'ay')
 #         else:
 #             res.append(i)
-            
+
 #     return ' '.join(res)
 # --- 2
 # def pig_it(text):
@@ -300,7 +299,7 @@
 # def count_bits(n):
 #     binary = f"{n:08b}"
 #     number = 0
-#     for num in binary : 
+#     for num in binary :
 #         if num == "1" :
 #             number += 1
 #     return number
@@ -311,22 +310,22 @@
 
 
 # --- Comments ---
-# Think about the count() method. 
+# Think about the count() method.
 
 
 # ---- ---- ----- ---- ---- ---- ----
 
 # def zeros(n):
 #     final_num = 1
-#     for i in range(n) : 
+#     for i in range(n) :
 #         print(i)
 #         final_num = final_num * (i+1)
 #     list_num = [*str(final_num)]
-#     result = 0 
+#     result = 0
 #     for x in reversed(list_num) :
 #         if x == "0" :
 #             result += 1
-#         else : 
+#         else :
 #             return result
 
 
@@ -355,11 +354,11 @@
 
 # --- My Solution
 # def diamond(n):
-#     if n % 2 == 0 or n < 0 : 
+#     if n % 2 == 0 or n < 0 :
 #         return None
 #     else :
 #         base, result = "*", []
-#         for i in range((n//2)+1) : 
+#         for i in range((n//2)+1) :
 #             result.append(((n//2)-i)*" "+(i*2+1)*base+"\n")
 #         symetry = result[-2::-1]
 #         return("".join(result) +"".join(symetry))
@@ -431,18 +430,17 @@
 # ---- ---- ----- ---- ---- ---- ----
 
 
-
 # --- 31 March ---
 
 # --- Instructions ---
 
-# Mexican wave 
+# Mexican wave
 
 # The wave (known as the Mexican wave in the English-speaking world outside North America) is an example of metachronal rhythm achieved in a packed stadium when successive groups of spectators briefly stand, yell, and raise their arms. Immediately upon stretching to full height, the spectator returns to the usual seated position.
 
 # The result is a wave of standing spectators that travels through the crowd, even though individual spectators never move away from their seats. In many large arenas the crowd is seated in a contiguous circuit all the way around the sport field, and so the wave is able to travel continuously around the arena; in discontiguous seating arrangements, the wave can instead reflect back and forth through the crowd. When the gap in seating is narrow, the wave can sometimes pass through it. Usually only one wave crest will be present at any given time in an arena, although simultaneous, counter-rotating waves have been produced. (Source Wikipedia)
 # Task
-# In this simple Kata your task is to create a function that turns a string into a Mexican Wave. You will be passed a string and you must return that string in an array where an uppercase letter is a person standing up. 
+# In this simple Kata your task is to create a function that turns a string into a Mexican Wave. You will be passed a string and you must return that string in an array where an uppercase letter is a person standing up.
 # Rules
 #  1.  The input string will always be lower case but maybe empty.
 
@@ -451,11 +449,11 @@
 
 # wave("hello") #=> ["Hello", "hEllo", "heLlo", "helLo", "hellO"]
 # --- My Solution
-# def wave(str) : 
+# def wave(str) :
 #     result = []
-#     for i in range(len(str)) : 
+#     for i in range(len(str)) :
 #         word = [*str]
-#         if word[i] == " " : 
+#         if word[i] == " " :
 #             continue
 #         word[i] = word[i].upper()
 #         result.append("".join(word))
@@ -463,8 +461,118 @@
 
 
 # --- Best Practice ---
+# def wave(str):
+#     return [str[:i] + str[i].upper() + str[i+1:] for i in range(len(str)) if str[i].isalpha()]
 
 # --- Comments ---
 
 
 # ---- ---- ----- ---- ---- ---- ----
+
+# GRADED FUNCTION
+import numpy as np
+
+# Our function will go through the matrix replacing each row in order turning it into echelon form.
+# If at any point it fails because it can't put a 1 in the leading diagonal,
+# we will return the value True, otherwise, we will return False.
+# There is no need to edit this function.
+
+
+def isSingular(A):
+    # Make B as a copy of A, since we're going to alter it's values.
+    B = np.array(A, dtype=np.float_)
+    try:
+        fixRowZero(B)
+        fixRowOne(B)
+        fixRowTwo(B)
+        fixRowThree(B)
+    except MatrixIsSingular:
+        return True
+    return False
+
+
+class MatrixIsSingular(Exception):
+    pass
+
+# For Row Zero, all we require is the first element is equal to 1.
+# We'll divide the row by the value of A[0, 0].
+# This will get us in trouble though if A[0, 0] equals 0, so first we'll test for that,
+# and if this is true, we'll add one of the lower rows to the first one before the division.
+# We'll repeat the test going down each lower row until we can do the division.
+# There is no need to edit this function.
+
+
+def fixRowZero(A):
+    if A[0, 0] == 0:
+        A[0] = A[0] + A[1]
+    if A[0, 0] == 0:
+        A[0] = A[0] + A[2]
+    if A[0, 0] == 0:
+        A[0] = A[0] + A[3]
+    if A[0, 0] == 0:
+        raise MatrixIsSingular()
+    A[0] = A[0] / A[0, 0]
+    print(A)
+    return A
+
+# First we'll set the sub-diagonal elements to zero, i.e. A[1,0].
+# Next we want the diagonal element to be equal to one.
+# We'll divide the row by the value of A[1, 1].
+# Again, we need to test if this is zero.
+# If so, we'll add a lower row and repeat setting the sub-diagonal elements to zero.
+# There is no need to edit this function.
+
+
+def fixRowOne(A):
+    A[1] = A[1] - A[1, 0] * A[0]
+    if A[1, 1] == 0:
+        A[1] = A[1] + A[2]
+        A[1] = A[1] - A[1, 0] * A[0]
+    if A[1, 1] == 0:
+        A[1] = A[1] + A[3]
+        A[1] = A[1] - A[1, 0] * A[0]
+    if A[1, 1] == 0:
+        raise MatrixIsSingular()
+    A[1] = A[1] / A[1, 1]
+    print(A)
+    return A
+
+# This is the first function that you should complete.
+# Follow the instructions inside the function at each comment.
+
+
+def fixRowTwo(A):
+    # Insert code below to set the sub-diagonal elements of row two to zero (there are two of them).
+    A[2] = A[2] - A[2, 0] * A[0]
+    A[2] = A[2] - A[2, 1] * A[1]
+    if A[2, 2] == 0:
+        A[2] = A[2] + A[3]
+        A[2] = A[2] - A[2, 0] * A[0]
+        A[2] = A[2] - A[2, 1] * A[1]
+    if A[2, 2] == 0:
+        raise MatrixIsSingular()
+    A[2] = A[2] / A[2, 2]
+    print(A)
+    return A
+
+
+def fixRowThree(A):
+    # Insert code below to set the sub-diagonal elements of row three to zero.
+    A[3] = A[3] - A[3, 0] * A[0]
+    A[3] = A[3] - A[3, 1] * A[1]
+    A[3] = A[3] - A[3, 2] * A[2]
+
+    if A[3, 3] == 0:
+        raise MatrixIsSingular()
+    A[3] = A[3] / A[3, 3]
+    print(A)
+    return A
+
+
+A = np.array([
+    [0, 7, -5, 3],
+    [2, 8, 0, 4],
+    [3, 12, 0, 5],
+    [1, 3, 1, 3]
+], dtype=np.float_)
+print(isSingular(A))
